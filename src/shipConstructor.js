@@ -1,3 +1,4 @@
+
 let newShip = (numberSize) => {
     let sunk = false;
     let len = numberSize;
@@ -7,23 +8,29 @@ let newShip = (numberSize) => {
         currentState.push("X");
     }
 
-    let hit = (index) => {
-        currentState[index] = "O";
-        return currentState;
-    };
+    let isSunk = () => {
+        console.log("This ship is sunk");
+    }
 
     let checkCurrentState = (value) => {
         return value === "O"
     }
 
-    let isSunk = () => {
+    let checkIfSunk = () => {
         if (currentState.every(checkCurrentState)){
             sunk = true;
+            isSunk();
             return sunk;
         }
     }
 
-    return { len, currentState, hit, isSunk};
+    let hit = (index) => {
+        currentState[index] = "O";
+        return currentState;
+        checkIfSunk();
+    };
+
+    return { len, currentState, hit, checkIfSunk};
 } 
 
 module.exports = newShip;
