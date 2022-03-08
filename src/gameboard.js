@@ -2,14 +2,24 @@ let newShip = require('./shipConstructor')
 
 let gameboards = (() => {
 
-    let smallShip = newShip(2)
-    let mediumShip = newShip(3)
-    let largeShip = newShip(5);
-
+    let ships = [
+        ["destroyer",2,0,2],
+        ["cruiser",3, 2,3],
+        ["submarine",3, 3,3],
+        ["battleship",4, 4,4],
+        ["carrier",5,7, 5]
+        ]
+    let coords = [
+        [0,2],
+        [2,3],
+        [3,3],
+        [4,4],
+        [7,5]
+    ]
+    let shipInPlay = [];
     let horizontal = true;
 
     let board = [
-
     [" "," "," ", " ", " ", " "," "," "," ", " "],
     [" "," "," ", " ", " ", " "," "," "," ", " "],
     [" "," "," ", " ", " ", " "," "," "," ", " "],
@@ -20,28 +30,29 @@ let gameboards = (() => {
     [" "," "," ", " ", " ", " "," "," "," ", " "],
     [" "," "," ", " ", " ", " "," "," "," ", " "],
     [" "," "," ", " ", " ", " "," "," "," ", " "]
-
     ]
 
-    let placeShip = (len, x, y) => {
-        
+    let placeShip = (x,y,len) => {
+
         for (let i = 0; i < len; i++){
-            if (horizontal){
-                board[x][y+i] = "X"; 
-            }else {
-                board[x+i][y] = "X"; 
-            }
+            board[x][y] = "X";
+            y++;
         }
     }
 
-    let receiveAttack = (x,y) => {
-        if (board[x][y] === "X"){
-            
+    let createShips = () => {
+        for (let i = 0; i < ships.length; i++){
+            let createNewShip = newShip(ships[i][1],ships[i][0]);
+            let x = coords[i][0];
+            let y = coords[i][1];
+            placeShip(x,y,createNewShip.len);
         }
+
     }
+
 
      
-     return {board, placeShip, smallShip,mediumShip,largeShip}
+     return {board, createShips}
 })()
 
 export {gameboards}
