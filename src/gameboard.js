@@ -3,16 +3,16 @@ let newShip = require('./shipConstructor')
 let gameboards = (() => {
 
     let board = [
-        [" "," "," ", " ", " ", " "," "," "," ", " "],
-        [" "," "," ", " ", " ", " "," "," "," ", " "],
-        [" "," "," ", " ", " ", " "," "," "," ", " "],
-        [" "," "," ", " ", " ", " "," "," "," ", " "],
-        [" "," "," ", " ", " ", " "," "," "," ", " "],
-        [" "," "," ", " ", " ", " "," "," "," ", " "],
-        [" "," "," ", " ", " ", " "," "," "," ", " "],
-        [" "," "," ", " ", " ", " "," "," "," ", " "],
-        [" "," "," ", " ", " ", " "," "," "," ", " "],
-        [" "," "," ", " ", " ", " "," "," "," ", " "]
+        [" "," "," "," "," "," "," "," "," "," "],
+        [" "," "," "," "," "," "," "," "," "," "],
+        [" "," "," "," "," "," "," "," "," "," "],
+        [" "," "," "," "," "," "," "," "," "," "],
+        [" "," "," "," "," "," "," "," "," "," "],
+        [" "," "," "," "," "," "," "," "," "," "],
+        [" "," "," "," "," "," "," "," "," "," "],
+        [" "," "," "," "," "," "," "," "," "," "],
+        [" "," "," "," "," "," "," "," "," "," "],
+        [" "," "," "," "," "," "," "," "," "," "]
         ]
 
     let shipTypes = [
@@ -50,10 +50,10 @@ let gameboards = (() => {
         let attack = board[x][y];
 
         if (Number.isInteger(attack)){
-            shipInPlay[attack].hit(1)
-        }
-
-        console.log(shipInPlay[attack].currentState)
+            board[x][y] = "O";
+            let filteredRow = board[x].filter(cell => cell !== " ");
+            shipInPlay[attack].hit();
+        }  
     }
 
     let startGame = () => {
@@ -61,7 +61,12 @@ let gameboards = (() => {
     }
 
     startGame();
-    receieveAttack(0,3)
+    receieveAttack(6,4)
+    receieveAttack(6,5)
+    receieveAttack(6,6)
+    receieveAttack(6,7)
+    receieveAttack(2,3)
+    
     console.log(board)
 
 

@@ -2,6 +2,7 @@
 let newShip = (numberSize, name) => {
     let sunk = false;
     let len = numberSize;
+    let numberHit = 0;
     let currentState = [];
 
     for (let i = 0; i < len; i++){
@@ -9,24 +10,25 @@ let newShip = (numberSize, name) => {
     }
 
     let isSunk = () => {
-        console.log("This ship is sunk");
+        console.log(`${name} has sunk!!!`);
     }
 
     let checkCurrentState = (value) => {
-        return value === "O"
+        return value === "O";
     }
 
     let checkIfSunk = () => {
-        if (currentState.every(checkCurrentState)){
+        console.log(numberHit)
+        if (numberHit === len){
+            console.log(sunk);
             sunk = true;
             isSunk();
             return sunk;
         }
     }
 
-    let hit = (index) => {
-        currentState[index] = "O";
-        return currentState;
+    let hit = () => {
+        numberHit++
         checkIfSunk();
     };
 

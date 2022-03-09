@@ -7,4 +7,4 @@ hi.textContent = "bye";
 
 
 
-let game = gameboards();
+// let game = gameboards();
