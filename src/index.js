@@ -6,5 +6,5 @@ let hi = document.querySelector("#test");
 hi.textContent = "bye";
 
 
-gameboards.createShips();
-console.log(gameboards.board)
+
+let game = gameboards();

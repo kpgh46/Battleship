@@ -2,57 +2,70 @@ let newShip = require('./shipConstructor')
 
 let gameboards = (() => {
 
-    let ships = [
-        ["destroyer",2,0,2],
-        ["cruiser",3, 2,3],
-        ["submarine",3, 3,3],
-        ["battleship",4, 4,4],
-        ["carrier",5,7, 5]
+    let board = [
+        [" "," "," ", " ", " ", " "," "," "," ", " "],
+        [" "," "," ", " ", " ", " "," "," "," ", " "],
+        [" "," "," ", " ", " ", " "," "," "," ", " "],
+        [" "," "," ", " ", " ", " "," "," "," ", " "],
+        [" "," "," ", " ", " ", " "," "," "," ", " "],
+        [" "," "," ", " ", " ", " "," "," "," ", " "],
+        [" "," "," ", " ", " ", " "," "," "," ", " "],
+        [" "," "," ", " ", " ", " "," "," "," ", " "],
+        [" "," "," ", " ", " ", " "," "," "," ", " "],
+        [" "," "," ", " ", " ", " "," "," "," ", " "]
         ]
-    let coords = [
-        [0,2],
-        [2,3],
-        [3,3],
-        [4,4],
-        [7,5]
-    ]
+
+    let shipTypes = [
+        {"name" : "destroyer", "len" : 2},
+        {"name" : "cruiser","len" : 3},
+        {"name" : "submarine","len" : 3},
+        {"name" : "battleship", "len" : 4},
+        {"name" : "carrier","len" : 5},
+        ]
+
     let shipInPlay = [];
     let horizontal = true;
 
-    let board = [
-    [" "," "," ", " ", " ", " "," "," "," ", " "],
-    [" "," "," ", " ", " ", " "," "," "," ", " "],
-    [" "," "," ", " ", " ", " "," "," "," ", " "],
-    [" "," "," ", " ", " ", " "," "," "," ", " "],
-    [" "," "," ", " ", " ", " "," "," "," ", " "],
-    [" "," "," ", " ", " ", " "," "," "," ", " "],
-    [" "," "," ", " ", " ", " "," "," "," ", " "],
-    [" "," "," ", " ", " ", " "," "," "," ", " "],
-    [" "," "," ", " ", " ", " "," "," "," ", " "],
-    [" "," "," ", " ", " ", " "," "," "," ", " "]
-    ]
+    //create ships and add to "shipsInPlay"
+    shipTypes.forEach(shiptype => {
+        let ship = newShip(shiptype.len,shiptype.name)
+        shipInPlay.push(ship);
+    })
 
-    let placeShip = (x,y,len) => {
+    //place ships on board
+    let placeShips = () => {
 
-        for (let i = 0; i < len; i++){
-            board[x][y] = "X";
-            y++;
-        }
+       shipInPlay.forEach((ship,index) => {
+           let x = index * 2;
+           let y = ship.len;
+           
+           for (let i = 0; i < ship.len; i++){
+               board[x][y+i] = index;
+           }
+       })
     }
 
-    let createShips = () => {
-        for (let i = 0; i < ships.length; i++){
-            let createNewShip = newShip(ships[i][1],ships[i][0]);
-            let x = coords[i][0];
-            let y = coords[i][1];
-            placeShip(x,y,createNewShip.len);
+    //receive an attack.  Eval if hit.  If so, send to correct ship
+    let receieveAttack = (x,y) => {
+        let attack = board[x][y];
+
+        if (Number.isInteger(attack)){
+            shipInPlay[attack].hit(1)
         }
 
+        console.log(shipInPlay[attack].currentState)
     }
 
+    let startGame = () => {
+        placeShips();
+    }
 
-     
-     return {board, createShips}
+    startGame();
+    receieveAttack(0,3)
+    console.log(board)
+
+
+     return {board}
 })()
 
 export {gameboards}
