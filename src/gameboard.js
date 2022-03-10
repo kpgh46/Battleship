@@ -44,14 +44,7 @@ let gameboards = (() => {
            let y = ship.len;
            
            for (let i = 0; i < ship.len; i++){
-
-               if(horizontal) {
-               board[x][y+i] = index;
-               } 
-
-               if(!horizontal){
-                board[x+i][y] = index;
-               }
+            horizontal ? board[x][y+i] = index : board[x+i][y] = index;
            }
        })
     };
@@ -90,11 +83,12 @@ let gameboards = (() => {
     }
 
     startGame();
-    receieveAttack(0,3)
-    receieveAttack(0,4)
-    receieveAttack(0,5)
-    receieveAttack(1,2)
-    receieveAttack(1,3)
+    // receieveAttack(0,3)
+    // receieveAttack(0,4)
+    // receieveAttack(0,5)
+    // receieveAttack(1,2)
+    // receieveAttack(1,3)
+
     // receieveAttack(1,2)
     // receieveAttack(0,2)
     // receieveAttack(0,3)
