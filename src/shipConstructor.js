@@ -5,21 +5,21 @@ let newShip = (numberSize, name) => {
     let numberHit = 0;
 
     let isSunk = () => {
-        console.log(`${name} has sunk!!!`);
-    }
 
-    let checkIfSunk = () => {
         if (numberHit === len){
-            isSunk();
+            console.log(`${name} has sunk!`);
+            return true;
+        }else {
+            return false;
         }
     }
 
     let hit = () => {
         numberHit++
-        checkIfSunk();
+        isSunk()
     };
 
-    return { len, hit, checkIfSunk, name };
+    return { len, hit, name, isSunk};
 } 
 
 module.exports = newShip;
