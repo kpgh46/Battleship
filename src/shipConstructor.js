@@ -3,27 +3,16 @@ let newShip = (numberSize, name) => {
     let sunk = false;
     let len = numberSize;
     let numberHit = 0;
-    let currentState = [];
-
-    for (let i = 0; i < len; i++){
-        currentState.push("X");
-    }
 
     let isSunk = () => {
+        sunk = true;
         console.log(`${name} has sunk!!!`);
-    }
-
-    let checkCurrentState = (value) => {
-        return value === "O";
+        return sunk;
     }
 
     let checkIfSunk = () => {
-        console.log(numberHit)
         if (numberHit === len){
-            console.log(sunk);
-            sunk = true;
             isSunk();
-            return sunk;
         }
     }
 
@@ -32,7 +21,7 @@ let newShip = (numberSize, name) => {
         checkIfSunk();
     };
 
-    return { len, currentState, hit, checkIfSunk, name};
+    return { len, hit, checkIfSunk, name, sunk };
 } 
 
 module.exports = newShip;

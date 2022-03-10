@@ -27,10 +27,10 @@ let gameboards = (() => {
     let horizontal = true;
 
     //create ships and add to "shipsInPlay"
-    shipTypes.forEach(shiptype => {
-        let ship = newShip(shiptype.len,shiptype.name)
-        shipInPlay.push(ship);
-    })
+        shipTypes.forEach(shiptype => {
+            let ship = newShip(shiptype.len,shiptype.name)
+            shipInPlay.push(ship);
+        })
 
     //place ships on board
     let placeShips = () => {
@@ -51,9 +51,10 @@ let gameboards = (() => {
 
         if (Number.isInteger(attack)){
             board[x][y] = "O";
-            let filteredRow = board[x].filter(cell => cell !== " ");
             shipInPlay[attack].hit();
         }  
+
+        console.log(shipInPlay);
     }
 
     let startGame = () => {
