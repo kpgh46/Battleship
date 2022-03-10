@@ -16,14 +16,15 @@ let gameboards = (() => {
         ]
 
     let shipTypes = [
-        {"name" : "carrier","len" : 5},
-        {"name" : "battleship", "len" : 4},
+        // {"name" : "carrier","len" : 5},
+        // {"name" : "battleship", "len" : 4},
         {"name" : "cruiser","len" : 3},
-        {"name" : "submarine","len" : 3},
+        // {"name" : "submarine","len" : 3},
         {"name" : "destroyer", "len" : 2}
         ]
 
     let shipInPlay = [];
+    let shipOutPlay = [];
     let horizontal = true;
 
     //create ships and add to "shipsInPlay"
@@ -57,7 +58,13 @@ let gameboards = (() => {
 
     //remove ship from play
     let removeFromPlay = (index) => {
-        shipInPlay.splice(index, 1);
+        shipOutPlay.push(shipInPlay[index])
+    }
+
+    let checkGameOver = () => {
+        if (shipInPlay.length === shipOutPlay.length){
+            console.log("game over")
+        }
     }
 
     //revieve attack and evaluate if hit
@@ -70,6 +77,7 @@ let gameboards = (() => {
 
             if(shipInPlay[attack].isSunk()){
                 removeFromPlay(attack);
+                checkGameOver();
             }
 
         }  else {
@@ -82,12 +90,12 @@ let gameboards = (() => {
     }
 
     startGame();
-    // receieveAttack(6,4)
-    // receieveAttack(6,5)
-    // receieveAttack(6,6)
-    // receieveAttack(6,7)
-    // receieveAttack(2,3)
-    // receieveAttack(6,1)
+    receieveAttack(0,3)
+    receieveAttack(0,4)
+    receieveAttack(0,5)
+    receieveAttack(1,2)
+    receieveAttack(1,3)
+    // receieveAttack(1,2)
     // receieveAttack(0,2)
     // receieveAttack(0,3)
     
