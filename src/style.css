@@ -41,6 +41,8 @@ h1{
     height: 110px;
     width: 200px;
     border-radius: 10px;
+    background-color: lightsteelblue;
+    visibility: visible;
 }
 
 form {

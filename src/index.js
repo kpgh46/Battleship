@@ -3,4 +3,4 @@ let newShip = require("./shipConstructor");
 import {gameboards} from "./gameboard"
 import { dom } from './dom';
 
-dom.renderBoard();
+

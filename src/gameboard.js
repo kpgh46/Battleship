@@ -81,37 +81,6 @@ let gameboards = (() => {
 
         console.log(board)
     }
-
-    // let startGame = () => {
-    //     let playerName1 = prompt("what is your name?");
-    //     let playerName2 = prompt("what is your name?");
-    //     let newPlayer1 = player(playerName1);
-    //     let newPlayer2 = player(playerName2);
-    //     placeShips();
-    //     let count = 0;
-    //     let turn = true;
-
-    //     while (count < 5){
-
-    //         if (turn) {
-    //             let playerOneX = prompt("enter P1 X");
-    //             let playerOneY = prompt("enter P1 Y");
-    //             newPlayer1.attack(playerOneX,playerOneY)
-    //             turn = !turn;
-    //         } 
-            
-    //         if (!turn){
-    //             let playerTwoX = prompt("enter P2 X");
-    //             let playerTwoY = prompt("enter P2 Y");
-    //             newPlayer1.attack(playerTwoX,playerTwoY)
-    //             turn = !turn;
-    //             count++;
-    //         }
-    // }
-
-       
-    
-
     
      return {board, receieveAttack}
 })()
