@@ -9,16 +9,18 @@ h1{
 }
 
 #middle {
+    margin-top: 50px;
     height: 470px;
-    width: 100%;;
-    border: 1px solid green;
+    width: 900px;
+    /* border: 1px solid green; */
     margin-left: 5%;
     margin-right: 5%;
 }
 
 #player-board {
     height: 400px;
-    width: 50%;
+    width: 500px;
+    /* border: 1px solid green; */
     display: flex;
     flex-wrap: wrap;
 }
@@ -27,4 +29,32 @@ h1{
     height: 45px;
     width: 45px;
     border: 1px solid red;
+}
+
+#name-prompt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    height: 110px;
+    width: 200px;
+    border-radius: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+#name-container{
+    justify-content: left;
+}
+
+
+button {
+    align-self: center;
+    margin-top: 10px;
 }
