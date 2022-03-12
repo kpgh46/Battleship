@@ -1,3 +1,30 @@
-#test{
-    color:green;
+h1{
+    text-align: center;
+}
+
+#top {
+    height: 120px;
+    width: 100%;
+    border: 1px solid black;
+}
+
+#middle {
+    height: 470px;
+    width: 100%;;
+    border: 1px solid green;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#player-board {
+    height: 400px;
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.block {
+    height: 45px;
+    width: 45px;
+    border: 1px solid red;
 }

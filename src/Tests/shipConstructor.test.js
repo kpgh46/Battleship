@@ -1,23 +1,28 @@
 let newShip = require('../shipConstructor')
 
+test('name of ship', () => {
+    let ship = newShip(3, "battleship")
+
+    expect(ship.name).toBe("battleship");
+})
+
 test('length of ship', () => {
     let ship = newShip(5);
     expect(ship.len).toBe(5)
 })
 
-test('where ship has been hit', () => {
-    let ship = newShip(5);
-    // let testArr = ["X","X","O","O","X"]
-    expect(ship.hit(2)).toEqual(expect.arrayContaining(["O"]));
+test('is ship hit', () => {
+    let ship = newShip(3,"kevinsShip");
+    ship.hit();
 
+    expect(ship.isSunk()).toBe(false);
 })
 
 test("is ship sunk", () => {
-    let ship = newShip(3);
-    ship.hit(0)
-    ship.hit(1)
-    ship.hit(2)
+    let ship = newShip(2, "kevinsShip");
+    ship.hit();
+    ship.hit();
 
-    expect(ship.checkIfSunk()).toBe(true);
+    expect(ship.isSunk()).toBe(true);
 })
 

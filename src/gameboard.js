@@ -1,4 +1,5 @@
-let newShip = require('./shipConstructor')
+let newShip = require('./shipConstructor');
+import {player} from "./player"
 
 let gameboards = (() => {
 
@@ -17,7 +18,7 @@ let gameboards = (() => {
 
     let shipTypes = [
         // {"name" : "carrier","len" : 5},
-        // {"name" : "battleship", "len" : 4},
+        {"name" : "battleship", "len" : 4},
         {"name" : "cruiser","len" : 3},
         // {"name" : "submarine","len" : 3},
         {"name" : "destroyer", "len" : 2}
@@ -47,6 +48,7 @@ let gameboards = (() => {
             horizontal ? board[x][y+i] = index : board[x+i][y] = index;
            }
        })
+       console.log(board)
     };
 
     //remove ship from play
@@ -76,26 +78,42 @@ let gameboards = (() => {
         }  else {
             board[x][y] = "O";
         }
+
+        console.log(board)
     }
 
-    let startGame = () => {
-        placeShips();
-    }
+    // let startGame = () => {
+    //     let playerName1 = prompt("what is your name?");
+    //     let playerName2 = prompt("what is your name?");
+    //     let newPlayer1 = player(playerName1);
+    //     let newPlayer2 = player(playerName2);
+    //     placeShips();
+    //     let count = 0;
+    //     let turn = true;
 
-    startGame();
-    // receieveAttack(0,3)
-    // receieveAttack(0,4)
-    // receieveAttack(0,5)
-    // receieveAttack(1,2)
-    // receieveAttack(1,3)
+    //     while (count < 5){
 
-    // receieveAttack(1,2)
-    // receieveAttack(0,2)
-    // receieveAttack(0,3)
+    //         if (turn) {
+    //             let playerOneX = prompt("enter P1 X");
+    //             let playerOneY = prompt("enter P1 Y");
+    //             newPlayer1.attack(playerOneX,playerOneY)
+    //             turn = !turn;
+    //         } 
+            
+    //         if (!turn){
+    //             let playerTwoX = prompt("enter P2 X");
+    //             let playerTwoY = prompt("enter P2 Y");
+    //             newPlayer1.attack(playerTwoX,playerTwoY)
+    //             turn = !turn;
+    //             count++;
+    //         }
+    // }
+
+       
     
-    console.log(board)
+
     
-     return {board}
+     return {board, receieveAttack}
 })()
 
 export {gameboards}

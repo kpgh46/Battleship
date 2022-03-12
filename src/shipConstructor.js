@@ -19,7 +19,7 @@ let newShip = (numberSize, name) => {
         isSunk()
     };
 
-    return { len, hit, name, isSunk};
+    return { len, hit, name, isSunk };
 } 
 
 module.exports = newShip;
