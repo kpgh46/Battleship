@@ -85,6 +85,7 @@ let gameboards = (() => {
     placeShips();
     receieveAttack(1,2)
     receieveAttack(1,3)
+    receieveAttack(4,3)
     
      return {board, receieveAttack}
 })()

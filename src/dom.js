@@ -27,9 +27,12 @@ let dom = (() => {
     
     let submitName = () => {
         let submitName = document.querySelector("#submit-name");
+        let playerName = document.querySelector("#name");
+        let playerInput = document.querySelector("#input-name")
 
         submitName.addEventListener("click", () => {
-        document.querySelector("#name-prompt").style.visibility = "hidden";
+            playerName.textContent = playerInput.value;
+            document.querySelector("#name-prompt").style.visibility = "hidden";
         })
     }
 
