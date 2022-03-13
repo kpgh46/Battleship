@@ -60,3 +60,17 @@ button {
     align-self: center;
     margin-top: 10px;
 }
+
+.hit {
+    background-color: green;
+    border: 1px solid blue;
+}
+
+.miss {
+    background-color: yellow;
+    border: 1px solid purple;
+}
+
+.ship {
+    background-color: grey;
+}

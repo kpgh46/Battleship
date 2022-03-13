@@ -81,6 +81,10 @@ let gameboards = (() => {
 
         console.log(board)
     }
+
+    placeShips();
+    receieveAttack(1,2)
+    receieveAttack(1,3)
     
      return {board, receieveAttack}
 })()

@@ -7,27 +7,36 @@ let dom = (() => {
             cell.forEach(item => {
                 let block = document.createElement('div');
                 block.classList.add("block");
+
+                    if (Number.isInteger(item)){
+                        block.classList.add("ship")
+                    }
+
+                    if (item === "X"){
+                        block.classList.add("hit")
+                    }
+                    if (item === "O"){
+                        block.classList.add("miss")
+                    }
                 
                 document.querySelector("#player-board").appendChild(block);
                    
             })
         })
-        
     }
     
     let submitName = () => {
- 
-        document.querySelector("#submit-name").addEventListener("click", () =>{
-            document.querySelector("#name-prompt").style.visibility = "hidden";
-            
+        let submitName = document.querySelector("#submit-name");
+
+        submitName.addEventListener("click", () => {
+        document.querySelector("#name-prompt").style.visibility = "hidden";
         })
-    
     }
 
     submitName();
     renderBoard();
 
-   return {renderBoard}
+   return {renderBoard, submitName}
 
 })();
 
