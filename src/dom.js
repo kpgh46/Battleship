@@ -36,7 +36,7 @@ let dom = (() => {
         })
     }
 
-    submitName();
+    // submitName();
     renderBoard();
 
    return {renderBoard, submitName}

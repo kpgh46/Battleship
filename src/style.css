@@ -42,7 +42,7 @@ h1{
     width: 200px;
     border-radius: 10px;
     background-color: lightsteelblue;
-    visibility: visible;
+    visibility: hidden;
 }
 
 form {
