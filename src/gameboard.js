@@ -48,7 +48,6 @@ let gameboards = (() => {
             horizontal ? board[x][y+i] = index : board[x+i][y] = index;
            }
        })
-       console.log(board)
     };
 
     //remove ship from play
@@ -83,11 +82,9 @@ let gameboards = (() => {
     }
 
     placeShips();
-    receieveAttack(1,2)
-    receieveAttack(1,3)
-    receieveAttack(4,3)
     
      return {board, receieveAttack}
+
 })()
 
 export {gameboards}

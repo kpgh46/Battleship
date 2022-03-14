@@ -67,7 +67,7 @@ button {
 }
 
 .miss {
-    background-color: yellow;
+    background-color: red;
     border: 1px solid purple;
 }
 

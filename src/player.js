@@ -1,6 +1,6 @@
 import {gameboards} from './gameboard'
 
-let player = (name) => {
+let userPlayer = (name) => {
 
     let attack = (x,y) => {
         if (gameboards.board[x][y] === "X" || gameboards.board[x][y] === "O"){
@@ -14,7 +14,7 @@ let player = (name) => {
 
 }
 
-let computer = () => {
+let computerPlayer = (name) => {
     
     let attack = (x) => {
         x = Math.floor(Math.random() * 11);
@@ -23,10 +23,12 @@ let computer = () => {
         if (gameboards.board[x][y] === "X" || gameboards.board[x][y] === "O"){
             console.log("this space is already taken")
         } else {
-        gameboards.receieveAttack(x,x)
+            gameboards.receieveAttack(x,x)
         }
         
     }
+
+    return {attack, name}
 }
 
-export {player}
+export {userPlayer, computerPlayer}

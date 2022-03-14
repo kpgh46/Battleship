@@ -1,6 +1,8 @@
 import { gameboards} from "./gameboard";
+import { player } from "./player";
 
 let dom = (() => {
+    let playerBoard = document.querySelector("#player-board");
 
     let renderBoard = () => {
         gameboards.board.forEach(cell => {
@@ -19,15 +21,22 @@ let dom = (() => {
                         block.classList.add("miss")
                     }
                 
-                document.querySelector("#player-board").appendChild(block);
+                playerBoard.appendChild(block);
                    
             })
         })
     }
+
+    let clearBoard = () => {
+
+        while (playerBoard.firstChild) {
+            playerBoard.removeChild(playerBoard.firstChild)
+        }
+    
+    }
     
     let submitName = () => {
         let submitName = document.querySelector("#submit-name");
-        let playerName = document.querySelector("#name");
         let playerInput = document.querySelector("#input-name")
 
         submitName.addEventListener("click", () => {
@@ -36,10 +45,8 @@ let dom = (() => {
         })
     }
 
-    // submitName();
-    renderBoard();
 
-   return {renderBoard, submitName}
+   return {renderBoard, submitName, clearBoard}
 
 })();
 
