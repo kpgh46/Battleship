@@ -5,18 +5,25 @@ let gameController = (() => {
     let playerOne = userPlayer("Kevin");
     let computerOne = computerPlayer("Watson")
 
-    dom.renderBoard();
+    // dom("player").renderBoard();
+    // dom("computer").renderBoard();
 
-    console.log(playerOne);
+    // console.log(playerOne);
+    // console.log(computerOne);
 
    
+    // dom("player").clearBoard();
+    // dom("computer").clearBoard();
 
+    // playerOne.attack(1,2);
+    // computerOne.attack();
 
-    dom.clearBoard();
+    // dom("player").renderBoard();
+    // dom("computer").renderBoard();
 
-    playerOne.attack(1,2);
-
-    dom.renderBoard();
+    // computerOne.attack();
+    // dom("computer").clearBoard();
+    // dom("computer").renderBoard();
     
 
 

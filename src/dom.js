@@ -1,8 +1,8 @@
 import { gameboards} from "./gameboard";
 import { player } from "./player";
 
-let dom = (() => {
-    let playerBoard = document.querySelector("#player-board");
+let dom = (user) => {
+    let userBoard = document.querySelector(`#${user}-board`);
 
     let renderBoard = () => {
         gameboards.board.forEach(cell => {
@@ -21,7 +21,7 @@ let dom = (() => {
                         block.classList.add("miss")
                     }
                 
-                playerBoard.appendChild(block);
+                userBoard.appendChild(block);
                    
             })
         })
@@ -29,8 +29,8 @@ let dom = (() => {
 
     let clearBoard = () => {
 
-        while (playerBoard.firstChild) {
-            playerBoard.removeChild(playerBoard.firstChild)
+        while (userBoard.firstChild) {
+            userBoard.removeChild(userBoard.firstChild)
         }
     
     }
@@ -48,6 +48,6 @@ let dom = (() => {
 
    return {renderBoard, submitName, clearBoard}
 
-})();
+};
 
 export {dom}

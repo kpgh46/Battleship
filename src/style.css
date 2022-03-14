@@ -17,7 +17,11 @@ h1{
     margin-right: 5%;
 }
 
-#player-board {
+#board{
+    display: flex;
+}
+
+.game-cells {
     height: 400px;
     width: 500px;
     /* border: 1px solid green; */
@@ -26,8 +30,8 @@ h1{
 }
 
 .block {
-    height: 45px;
-    width: 45px;
+    height: 40px;
+    width: 40px;
     border: 1px solid red;
 }
 
