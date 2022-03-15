@@ -5,8 +5,8 @@ let gameController = (() => {
     let playerOne = userPlayer("Kevin");
     let computerOne = computerPlayer("Watson")
 
-    // dom("player").renderBoard();
-    // dom("computer").renderBoard();
+    dom("player").renderBoard();
+    dom("computer").renderBoard();
 
     // console.log(playerOne);
     // console.log(computerOne);
