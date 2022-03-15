@@ -19,7 +19,6 @@ let computerPlayer = (name) => {
     let attack = () => {
         let x = Math.floor(Math.random() * 11);
         let y = Math.floor(Math.random() * 11);
-        
 
         if (gameboards.board[x][y] === "X" || gameboards.board[x][y] === "O"){
             console.log("this space is already taken")

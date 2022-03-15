@@ -1,12 +1,33 @@
 import { userPlayer, computerPlayer } from "./player";
-import { dom } from "./dom"
+import { dom } from "./dom";
+import {gameboards} from "./gameboard";
 
 let gameController = (() => {
-    let playerOne = userPlayer("Kevin");
-    let computerOne = computerPlayer("Watson")
+    let players = [];
+    let boards = [];
 
-    dom("player").renderBoard();
-    dom("computer").renderBoard();
+    let player = userPlayer("Kevin");
+    let computer = computerPlayer("Watson");
+
+    let playerBoard = gameboards("player");
+    let computerBoard = gameboards("computer");
+
+    boards.push(playerBoard,computerBoard);
+
+    boards[0].board[1][2] = "P";
+
+    boards[1].board[2][6] = "W";
+
+    console.log(boards[0].board);
+    console.log(boards[1].board);
+
+    
+
+
+
+ 
+    // let playerBoard = dom("player").renderBoard();
+    // let computerBoard = dom("computer").renderBoard();
 
     // console.log(playerOne);
     // console.log(computerOne);

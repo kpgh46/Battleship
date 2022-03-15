@@ -1,7 +1,9 @@
 let newShip = require('./shipConstructor');
 import {player} from "./player"
 
-let gameboards = (() => {
+let gameboards = (name) => {
+
+    let boardName = name;
 
     let board = [
         [" "," "," "," "," "," "," "," "," "," "],
@@ -87,8 +89,8 @@ let gameboards = (() => {
 
     placeShips();
     
-     return {board, receieveAttack}
+     return {board, receieveAttack, boardName}
 
-})()
+};
 
 export {gameboards}
