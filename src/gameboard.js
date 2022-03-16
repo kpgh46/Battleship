@@ -40,7 +40,7 @@ let gameboards = (name) => {
     }
 
     let shipsInPlay = createShips(shipTypes);
-    let shipOutPlay = [];
+    let shipsOutPlay = [];
     let horizontal = true;
 
     //place ships on board
@@ -58,11 +58,11 @@ let gameboards = (name) => {
 
     //remove ship from play
     let removeFromPlay = (index) => {
-        shipOutPlay.push(shipInPlay[index])
+        shipsOutPlay.push(shipsInPlay[index])
     }
 
     let checkGameOver = () => {
-        if (shipInPlay.length === shipOutPlay.length){
+        if (shipsInPlay.length === shipsOutPlay.length){
             console.log("game over")
         }
     }
@@ -73,9 +73,9 @@ let gameboards = (name) => {
 
         if (Number.isInteger(attack)){
             board[x][y] = "X";
-            shipInPlay[attack].hit();
+            shipsInPlay[attack].hit();
 
-            if(shipInPlay[attack].isSunk()){
+            if(shipsInPlay[attack].isSunk()){
                 removeFromPlay(attack);
                 checkGameOver();
             }
