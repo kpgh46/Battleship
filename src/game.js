@@ -18,6 +18,9 @@ let gameController = (() => {
 
     boards[1].board[2][6] = "W";
 
+    player.attack(1,2,1,boards);
+    
+
     console.log(boards[0].board);
     console.log(boards[1].board);
 

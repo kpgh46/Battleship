@@ -2,11 +2,11 @@ import {gameboards} from './gameboard'
 
 let userPlayer = (name) => {
 
-    let attack = (x,y) => {
-        if (gameboards.board[x][y] === "X" || gameboards.board[x][y] === "O"){
+    let attack = (x,y,i,arrOfBoards) => {
+        if (arrOfBoards[i].board[x][y] === "X" || arrOfBoards[i].board[x][y] === "O"){
             console.log("this space is already taken")
         } else {
-        gameboards.receieveAttack(x,y)
+        arrOfBoards[i].receieveAttack(x,y)
         }
     }
 
