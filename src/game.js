@@ -4,20 +4,27 @@ import {gameboards} from "./gameboard";
 
 let gameController = (() => {
     let players = [];
+    let active = players[0];
   
     let playerBoard = gameboards("player");
     let computerBoard = gameboards("computer");
 
     let player = userPlayer("Kevin", computerBoard);
     let computer = computerPlayer("Watson", playerBoard);
+    players.push(player,computer)
+    console.log(players)
 
 
     player.attack(1,2);
     computer.attack();
-    player.attack(1,3)
-    computer.attack();
-    player.attack(1,4)
-    computer.attack();
+    // player.attack(1,3)
+    // computer.attack();
+    // player.attack(1,4)
+    // computer.attack();
+    // player.attack(1,5)
+
+    dom(playerBoard).renderBoard();
+    dom(computerBoard).renderBoard();
     
  
     // let playerBoard = dom("player").renderBoard();

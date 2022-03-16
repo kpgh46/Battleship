@@ -1,14 +1,17 @@
 import { gameboards} from "./gameboard";
 import { player } from "./player";
 
-let dom = (user) => {
-    let userBoard = document.querySelector(`#${user}-board`);
+let dom = (playerBoard) => {
+    let userBoard = document.querySelector(`#${playerBoard.boardName}-board`);
 
     let renderBoard = () => {
-        gameboards.board.forEach(cell => {
+        let count = 0;
+        playerBoard.board.forEach(cell => {
             cell.forEach(item => {
                 let block = document.createElement('div');
                 block.classList.add("block");
+                block.dataset.id = count;
+                count += 1;
 
                     if (Number.isInteger(item)){
                         block.classList.add("ship")
@@ -26,6 +29,13 @@ let dom = (user) => {
             })
         })
     }
+
+    document.addEventListener("click", (el) => {
+        if(el.target.classList.contains("block")){
+            let value = el.target.dataset.id.toString().split("")
+            console.log(value)
+        }
+    })
 
     let clearBoard = () => {
 
