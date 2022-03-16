@@ -28,7 +28,7 @@ let computerPlayer = (name, playerBoard ) => {
         
     }
 
-    return {attack, name}
+    return {attack, name}   
 }
 
 export {userPlayer, computerPlayer}

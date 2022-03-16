@@ -9,19 +9,16 @@ let gameController = (() => {
     let computerBoard = gameboards("computer");
 
     let player = userPlayer("Kevin", computerBoard);
-    let computer = computerPlayer("Watson");
+    let computer = computerPlayer("Watson", playerBoard);
 
 
-    player.attack(1,2)
+    player.attack(1,2);
+    computer.attack();
     player.attack(1,3)
+    computer.attack();
     player.attack(1,4)
-    player.attack(6,4)
-    player.attack(1,3)
-    player.attack(9,9)
+    computer.attack();
     
-
-
-
  
     // let playerBoard = dom("player").renderBoard();
     // let computerBoard = dom("computer").renderBoard();
