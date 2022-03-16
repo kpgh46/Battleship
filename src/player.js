@@ -1,29 +1,29 @@
 import {gameboards} from './gameboard'
 
-let userPlayer = (name, enemyBoard) => {
+let userPlayer = (name, computerBoard) => {
 
     let attack = (x,y) => {
-        if (enemyBoard.board[x][y] === "X" || enemyBoard.board[x][y] === "O"){
+        if (computerBoard.board[x][y] === "X" || computerBoard.board[x][y] === "O"){
             console.log("this space is already taken")
         } else {
-        enemyBoard.receieveAttack(x,y)
+        computerBoard.receieveAttack(x,y)
         }
     }
 
-    return {attack, name}
+    return {attack, name}   
 
 }
 
-let computerPlayer = (name) => {
+let computerPlayer = (name, playerBoard ) => {
     
     let attack = () => {
         let x = Math.floor(Math.random() * 9);
         let y = Math.floor(Math.random() * 9);
 
-        if (gameboards.board[x][y] === "X" || gameboards.board[x][y] === "O"){
+        if (playerBoard.board[x][y] === "X" || playerBoard.board[x][y] === "O"){
             console.log("this space is already taken")
         } else {
-            gameboards.receieveAttack(x,y)
+            playerBoard.receieveAttack(x,y)
         }
         
     }
