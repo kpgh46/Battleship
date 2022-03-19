@@ -24,12 +24,11 @@ let gameController = (() => {
         player.attack(Number.parseInt(value[0]), Number.parseInt(value[1]))
         dom(computerBoard).clearBoard();
         dom(computerBoard).renderBoard();
-        computer.attack();
-        dom(playerBoard).clearBoard();
-        dom(playerBoard).renderBoard();
-        
-
-
+        setTimeout(() => {
+            computer.attack();
+            dom(playerBoard).clearBoard();
+            dom(playerBoard).renderBoard();
+        },1000)
     }
     })
 
