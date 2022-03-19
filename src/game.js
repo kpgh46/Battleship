@@ -19,13 +19,13 @@ let gameController = (() => {
 
     document.addEventListener("click", (el) => {
     if(el.target.classList.contains("block")){
+        console.log(el.target.dataset.id)
         let value = el.target.dataset.id.toString().split("")
-        player.attack(value[0], value[1])
+        player.attack(Number.parseInt(value[0]), Number.parseInt(value[1]))
         dom(computerBoard).clearBoard();
         dom(computerBoard).renderBoard();
         computer.attack();
         dom(playerBoard).clearBoard();
-        
         dom(playerBoard).renderBoard();
         
 

@@ -10,8 +10,13 @@ let dom = (playerBoard) => {
             cell.forEach(item => {
                 let block = document.createElement('div');
                 block.classList.add("block");
-                block.dataset.id = count;
-                count += 1;
+                if(count < 10){
+                    block.dataset.id = count.toString().padStart(2, "0");
+                    count +=1;
+                } else{
+                    block.dataset.id = count.toString();
+                    count += 1;
+                }
 
                     if (Number.isInteger(item)){
                         block.classList.add("ship")
