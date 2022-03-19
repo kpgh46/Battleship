@@ -30,12 +30,7 @@ let dom = (playerBoard) => {
         })
     }
 
-    document.addEventListener("click", (el) => {
-        if(el.target.classList.contains("block")){
-            let value = el.target.dataset.id.toString().split("")
-            console.log(value)
-        }
-    })
+
 
     let clearBoard = () => {
 

@@ -12,43 +12,26 @@ let gameController = (() => {
     let player = userPlayer("Kevin", computerBoard);
     let computer = computerPlayer("Watson", playerBoard);
     players.push(player,computer)
-    console.log(players)
-
-
-    player.attack(1,2);
-    computer.attack();
-    // player.attack(1,3)
-    // computer.attack();
-    // player.attack(1,4)
-    // computer.attack();
-    // player.attack(1,5)
+    
 
     dom(playerBoard).renderBoard();
     dom(computerBoard).renderBoard();
-    
- 
-    // let playerBoard = dom("player").renderBoard();
-    // let computerBoard = dom("computer").renderBoard();
 
-    // console.log(playerOne);
-    // console.log(computerOne);
-
-   
-    // dom("player").clearBoard();
-    // dom("computer").clearBoard();
-
-    // playerOne.attack(1,2);
-    // computerOne.attack();
-
-    // dom("player").renderBoard();
-    // dom("computer").renderBoard();
-
-    // computerOne.attack();
-    // dom("computer").clearBoard();
-    // dom("computer").renderBoard();
-    
+    document.addEventListener("click", (el) => {
+    if(el.target.classList.contains("block")){
+        let value = el.target.dataset.id.toString().split("")
+        player.attack(value[0], value[1])
+        dom(computerBoard).clearBoard();
+        dom(computerBoard).renderBoard();
+        computer.attack();
+        dom(playerBoard).clearBoard();
+        
+        dom(playerBoard).renderBoard();
+        
 
 
+    }
+    })
 
 
 })()
