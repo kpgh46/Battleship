@@ -32,16 +32,17 @@ let gameController = (() => {
     //
 
     let computerSelection = () => {
-        computer.attack();
-        toggle();
-        updateGame();
+        setTimeout(() => {
+            computer.attack();
+            toggle();
+            updateGame();
+        }, 750)
     }
 
     let playerSelection = () => {
         document.addEventListener("click", (el) => {
             if(el.target.classList.contains("block")){
-                // console.log(el.target.dataset.id)
-                let value = el.target.dataset.id.toString().split("")
+                let value = el.target.dataset.id.toString().split("");  
                 player.attack(Number.parseInt(value[0]), Number.parseInt(value[1]))
                 toggle();
                 updateGame();
@@ -52,9 +53,11 @@ let gameController = (() => {
     
     };
 
-   playerSelection();
+    let playRound = () => {
+        playerSelection();
+    }
 
-    
+    playRound();
 
 })()
 
