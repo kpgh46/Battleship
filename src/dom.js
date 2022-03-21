@@ -35,7 +35,16 @@ let dom = (playerBoard) => {
         })
     }
 
+    let playerName = () => {
+        let submitName = document.querySelector("#submit-name");
+        
+        submitName.addEventListener("click", () => {
+            let playerInput = document.getElementById("input-name").value;
+            document.getElementById("name").textContent = playerInput;
+            document.querySelector("#name-prompt").style.visibility = "hidden";
+        })
 
+    }
 
     let clearBoard = () => {
 
@@ -45,18 +54,10 @@ let dom = (playerBoard) => {
     
     }
     
-    let submitName = () => {
-        let submitName = document.querySelector("#submit-name");
-        let playerInput = document.querySelector("#input-name")
-
-        submitName.addEventListener("click", () => {
-            playerName.textContent = playerInput.value;
-            document.querySelector("#name-prompt").style.visibility = "hidden";
-        })
-    }
+    playerName();
 
 
-   return {renderBoard, submitName, clearBoard}
+   return {renderBoard, clearBoard}
 
 };
 

@@ -15,8 +15,8 @@ let gameController = (() => {
 
     let player = userPlayer("Kevin", computerBoard);
     let computer = computerPlayer("Watson", playerBoard);
-    players.push(player,computer)
-
+    players.push(player,computer);
+    
     let toggle = () => {
         turn = turn === 0 ? 1 : 0;
     }
@@ -47,7 +47,7 @@ let gameController = (() => {
                 toggle();
                 updateGame();
                 computerSelection();
-           
+                
             }
         })
     
