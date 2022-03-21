@@ -35,16 +35,16 @@ let dom = (playerBoard) => {
         })
     }
 
-    let playerName = () => {
-        let submitName = document.querySelector("#submit-name");
+    // let playerName = () => {
+    //     let submitName = document.querySelector("#submit-name");
         
-        submitName.addEventListener("click", () => {
-            let playerInput = document.getElementById("input-name").value;
-            document.getElementById("name").textContent = playerInput;
-            document.querySelector("#name-prompt").style.visibility = "hidden";
-        })
+    //     submitName.addEventListener("click", () => {
+    //         let playerInput = document.getElementById("input-name").value;
+    //         document.getElementById("name").textContent = playerInput;
+    //         document.querySelector("#name-prompt").style.visibility = "hidden";
+    //     })
 
-    }
+    // }
 
     let clearBoard = () => {
 
@@ -54,7 +54,7 @@ let dom = (playerBoard) => {
     
     }
     
-    playerName();
+    // playerName();
 
 
    return {renderBoard, clearBoard}

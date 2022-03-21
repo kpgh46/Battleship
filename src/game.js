@@ -47,7 +47,6 @@ let gameController = (() => {
                 toggle();
                 updateGame();
                 computerSelection();
-                
             }
         })
     
