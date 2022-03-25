@@ -17,6 +17,11 @@ let gameController = (() => {
     let computer = computerPlayer("Watson", playerBoard);
     players.push(player,computer);
     
+    dom(playerBoard).renderBoard();
+    // dom(computerBoard).renderBoard();
+    // dom(playerBoard).ships();
+    //
+
     let toggle = () => {
         turn = turn === 0 ? 1 : 0;
     }
@@ -26,10 +31,6 @@ let gameController = (() => {
         dom(boards[turn]).renderBoard();
         active = players[turn]
     };
-
-    dom(playerBoard).renderBoard();
-    dom(computerBoard).renderBoard();
-    //
 
     let computerSelection = () => {
         setTimeout(() => {

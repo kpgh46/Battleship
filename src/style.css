@@ -42,11 +42,11 @@ h1{
     margin-right: -50%;
     transform: translate(-50%, -50%);
     border: 1px solid black;
-    height: 110px;
-    width: 200px;
+    height: 410px;
+    width: 230px;
     border-radius: 10px;
     background-color: lightsteelblue;
-    visibility: hidden;
+    visibility: visible;
 }
 
 form {
@@ -77,4 +77,49 @@ button {
 
 .ship {
     background-color: grey;
+}
+
+#ships-container{
+    margin-top: 30px;
+    border: 1px solid black;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+}
+
+.ship-start{
+    display: flex;
+
+}
+
+.drop-zone--over{
+    opacity:0.5;
+    border: 1px solid yellow;
+  }
+
+.shipBlocks {
+    height: 40px;
+    width: 40px;
+    border: 1px solid brown;
+}
+
+.dragging{
+    border:3px solid green;
+}
+
+.ship-start{
+    /* border: 1px solid black; */
+    display: flex;
+    height: 40px;
+    /* width: auto; */
+}
+
+.coordinate-section{
+    border: 1px solid black;
+}
+
+.coordinates{
+    width: 30px;
 }

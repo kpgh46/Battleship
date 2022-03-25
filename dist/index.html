@@ -14,12 +14,41 @@
     <div id = "name-prompt">
        <form>
           <div id = "name-container">
-            <label for = "player-name" id = "player-name">Enter your name:</label>
-            <input id = "input-name" type = "text" for = "player-name">
+            <p>Enter Ship Coordinates</p>
+              <div class = "coordinate-section">
+                <label for = "carrierC" id = "carrierC">Carrier(5)</label>
+                <input id = "carrierC" type = "text" for = "carrierC" class = "coordinates" placeholder="X">
+                <input id = "carrierC" type = "text" for = "carrierC" class = "coordinates" placeholder="Y">
+              </div>
+
+              <div class = "coordinate-section">
+                <label for = "battleshipC" id = "battleshipC">BattleShip(4)</label>
+                <input id = "battleshipC" type = "text" for = "battleshipC" class = "coordinates" placeholder="X">
+                <input id = "battleshipC" type = "text" for = "battleshipC" class = "coordinates" placeholder="Y">
+              </div>
+
+              <div class = "coordinate-section">
+                <label for = "cruiserC" id = "cruiserC">Cruiser(3)</label>
+                <input id = "cruiserC" type = "text" for = "cruiserC" class = "coordinates" placeholder="X">
+                <input id = "cruiserC" type = "text" for = "cruiserC" class = "coordinates" placeholder="Y">
+              </div>
+
+              <div class = "coordinate-section">
+                <label for = "submarineC" id = "battleshipC">Submarine(3)</label>
+                <input id = "submarineC" type = "text" for = "submarineC" class = "coordinates" placeholder="X">
+                <input id = "submarineC" type = "text" for = "submarineC" class = "coordinates" placeholder="Y">
+              </div>
+
+              <div class = "coordinate-section">
+                <label for = "destroyerC" id = "destroyerC">Destroyer(2)</label>
+                <input id = "destroyerC" type = "text" for = "destroyerC" class = "coordinates" placeholder="X">
+                <input id = "destroyerC" type = "text" for = "destroyerC" class = "coordinates" placeholder="Y">
+              </div>
           </div>
 
-          <button type = "button" id = "submit-name">Submit</button>
+          <button type = "button" id = "submit-coords">Submit</button>
        </form> 
+
 
     </div>
 
@@ -30,6 +59,14 @@
         <div class = "game-cells" id = "computer-board"></div>
       </div>
 
+      <div id = "ships-container">
+        <div draggable = true id = "carrier" class = "ship-start"></div>
+        <div draggable = true id = "battleship" class = "ship-start"></div>
+        <div draggable = true id = "cruiser" class = "ship-start"></div>
+        <div draggable = true id = "submarine"class = "ship-start"></div>
+        <div draggable = true id = "destroyer"class = "ship-start"></div>
+
+      </div>
 
     </div>
 

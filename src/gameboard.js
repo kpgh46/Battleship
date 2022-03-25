@@ -19,10 +19,10 @@ let gameboards = (name) => {
         ]
 
     let shipTypes = [
-        // {"name" : "carrier","len" : 5},
+        {"name" : "carrier","len" : 5},
         {"name" : "battleship", "len" : 4},
         {"name" : "cruiser","len" : 3},
-        // {"name" : "submarine","len" : 3},
+        {"name" : "submarine","len" : 3},
         {"name" : "destroyer", "len" : 2}
         ]
 
@@ -87,9 +87,9 @@ let gameboards = (name) => {
         console.log(board)
     }
 
-    placeShips();
+    // placeShips();
     
-     return {board, receieveAttack, boardName}
+     return {board, receieveAttack, boardName, shipTypes}
 
 };
 

@@ -4,6 +4,20 @@ import { player } from "./player";
 let dom = (playerBoard) => {
     let userBoard = document.querySelector(`#${playerBoard.boardName}-board`);
 
+    let ships = () => {
+        playerBoard.shipTypes.forEach(ship => {
+
+            for(let i = 0; i < ship.len; i++){
+                let block = document.createElement('div');    
+                block.id = `${ship.name}-${i}`;
+                block.classList.add('shipBlocks')
+                document.getElementById(ship.name).appendChild(block);
+            }
+        })
+
+        
+    }
+
     let renderBoard = () => {
         let count = 0;
         playerBoard.board.forEach(cell => {
@@ -23,7 +37,7 @@ let dom = (playerBoard) => {
                     }
 
                     if (item === "X"){
-                        block.classList.add("hit")
+                        block.classList.add("hit");
                     }
                     if (item === "O"){
                         block.classList.add("miss")
@@ -35,17 +49,6 @@ let dom = (playerBoard) => {
         })
     }
 
-    // let playerName = () => {
-    //     let submitName = document.querySelector("#submit-name");
-        
-    //     submitName.addEventListener("click", () => {
-    //         let playerInput = document.getElementById("input-name").value;
-    //         document.getElementById("name").textContent = playerInput;
-    //         document.querySelector("#name-prompt").style.visibility = "hidden";
-    //     })
-
-    // }
-
     let clearBoard = () => {
 
         while (userBoard.firstChild) {
@@ -53,9 +56,6 @@ let dom = (playerBoard) => {
         }
     
     }
-    
-    // playerName();
-
 
    return {renderBoard, clearBoard}
 
