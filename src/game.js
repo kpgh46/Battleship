@@ -26,6 +26,7 @@ let gameController = (() => {
         console.log(playerBoard.board)
         dom(playerBoard).clearBoard();
         dom(playerBoard).renderBoard();
+        document.getElementById("name-prompt").style.visibility = "hidden";
         // console.log(playerBoard.shipTypes)
         
     })
