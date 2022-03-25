@@ -1,5 +1,5 @@
 
-let newShip = (numberSize, name) => {
+let newShip = (numberSize, name, x, y) => {
 
     let len = numberSize;
     let numberHit = 0;
@@ -19,7 +19,7 @@ let newShip = (numberSize, name) => {
         isSunk()
     };
 
-    return { len, hit, name, isSunk };
+    return { len, hit, name, isSunk, x, y };
 } 
 
 module.exports = newShip;

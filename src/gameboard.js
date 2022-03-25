@@ -26,29 +26,42 @@ let gameboards = (name) => {
         {"name" : "destroyer", "len" : 2}
         ]
 
+    let updateShipTypes = () => {
+
+        shipTypes.forEach(ship => {
+           
+            ship.x = document.getElementById(`${ship.name}`).value;
+            ship.y = document.getElementById(`${ship.name}Y`).value;
+            console.log(ship)
+            
+        })
+    }
+    
     
     //create ships and add to "shipsInPlay"
     let createShips = (typesOfShips) => {
         let shipsArr = [];
 
         typesOfShips.forEach(shiptype => {
-            let ship = newShip(shiptype.len,shiptype.name)
+            let ship = newShip(shiptype.len,shiptype.name,shiptype.x,shiptype.y);
             shipsArr.push(ship);
         })
 
         return shipsArr;
     }
 
-    let shipsInPlay = createShips(shipTypes);
+    let shipsInPlay;
     let shipsOutPlay = [];
     let horizontal = true;
 
     //place ships on board
     let placeShips = () => {
+        shipsInPlay = createShips(shipTypes);
+        console.log(shipsInPlay)
         
         shipsInPlay.forEach((ship,index) => {
-           let x = index;
-           let y = ship.len;
+           let x = parseInt(ship.x);
+           let y = parseInt(ship.y);
            
            for (let i = 0; i < ship.len; i++){
                 horizontal ? board[x][y+i] = index : board[x+i][y] = index;
@@ -89,7 +102,7 @@ let gameboards = (name) => {
 
     // placeShips();
     
-     return {board, receieveAttack, boardName, shipTypes}
+     return {board, receieveAttack, boardName, shipTypes, updateShipTypes, placeShips}
 
 };
 
