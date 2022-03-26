@@ -18,27 +18,20 @@ let gameController = (() => {
     players.push(player,computer);
     
     dom(playerBoard).renderBoard();
-    // console.log(playerBoard.shipTypes)
     let test = document.querySelector("#submit-coords");
+    
     test.addEventListener("click", () => {
         playerBoard.updateShipTypes();
         playerBoard.placeShips();
-        console.log(playerBoard.board)
-        dom(playerBoard).clearBoard();
         dom(playerBoard).renderBoard();
         document.getElementById("name-prompt").style.visibility = "hidden";
-        // console.log(playerBoard.shipTypes)
-        
     })
     
-
-
     let toggle = () => {
         turn = turn === 0 ? 1 : 0;
     }
 
     let updateGame = () => {
-        dom(boards[turn]).clearBoard();
         dom(boards[turn]).renderBoard();
         active = players[turn]
     };

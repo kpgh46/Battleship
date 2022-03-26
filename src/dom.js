@@ -19,6 +19,7 @@ let dom = (playerBoard) => {
     }
 
     let renderBoard = () => {
+        clearBoard();
         let count = 0;
         playerBoard.board.forEach(cell => {
             cell.forEach(item => {

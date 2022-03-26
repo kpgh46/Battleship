@@ -26,14 +26,24 @@ let gameboards = (name) => {
         {"name" : "destroyer", "len" : 2}
         ]
 
+    let verifyShipPlacement = (value, len) => {
+        let num = 10 - len;
+        return num < value ? false : true
+    
+    }
+
     let updateShipTypes = () => {
 
         shipTypes.forEach(ship => {
-           
-            ship.x = document.getElementById(`${ship.name}`).value;
-            ship.y = document.getElementById(`${ship.name}Y`).value;
-            console.log(ship)
-            
+           let xVal = document.getElementById(`${ship.name}`).value; 
+           let yVal = document.getElementById(`${ship.name}Y`).value;
+           ship.x = xVal;
+
+            if (verifyShipPlacement(yVal,ship.len)){
+                    ship.y = yVal
+            }else{
+                console.log("does not work!")
+            }
         })
     }
     
