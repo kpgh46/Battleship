@@ -18,12 +18,17 @@ let gameboards = (name) => {
         [" "," "," "," "," "," "," "," "," "," "]
         ]
 
+    let generateRandom = (len) => {
+        let num = 10 - len;
+        return Math.floor(Math.random() * num);
+    }
+
     let shipTypes = [
-        {"name" : "carrier","len" : 5},
-        {"name" : "battleship", "len" : 4},
-        {"name" : "cruiser","len" : 3},
-        {"name" : "submarine","len" : 3},
-        {"name" : "destroyer", "len" : 2}
+        {"name" : "carrier","len" : 5, "x" : Math.floor(Math.random() * 10), "y": generateRandom(5)},
+        {"name" : "battleship", "len" : 4, "x" : Math.floor(Math.random() * 10), "y": generateRandom(4)},
+        {"name" : "cruiser","len" : 3, "x" : Math.floor(Math.random() * 10), "y": generateRandom(3)},
+        {"name" : "submarine","len" : 3, "x" : Math.floor(Math.random() * 10), "y": generateRandom(3)},
+        {"name" : "destroyer", "len" : 2, "x" : Math.floor(Math.random() * 10), "y": generateRandom(2)}
         ]
 
     let verifyShipPlacement = (value, len) => {

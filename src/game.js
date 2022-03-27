@@ -18,12 +18,14 @@ let gameController = (() => {
     players.push(player,computer);
     
     dom(playerBoard).renderBoard();
-    let test = document.querySelector("#submit-coords");
-    
-    test.addEventListener("click", () => {
+    let submitCoords = document.querySelector("#submit-coords");
+
+    submitCoords.addEventListener("click", () => {
         playerBoard.updateShipTypes();
         playerBoard.placeShips();
         dom(playerBoard).renderBoard();
+        computerBoard.placeShips();
+        dom(computerBoard).renderBoard();
         document.getElementById("name-prompt").style.visibility = "hidden";
     })
     
