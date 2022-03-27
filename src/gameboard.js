@@ -31,6 +31,32 @@ let gameboards = (name) => {
         {"name" : "destroyer", "len" : 2, "x" : Math.floor(Math.random() * 10), "y": generateRandom(2)}
         ]
 
+
+
+    let noOverlap = (ship) => {
+        let arrX = []
+        ship.forEach(item => arrX.push(item.x));
+        let unique = [...new Set(arrX)];
+        
+
+        if (arrX.length === unique.length){
+            return true;
+        }else {
+            return false;
+        }
+
+    }
+
+    let regenerateNumbers = (ship) => {
+        console.log("test")
+        ship.forEach(coord => {
+            coord.x = Math.floor(Math.random() * 10)
+        })
+        
+    }
+
+
+
     let verifyShipPlacement = (value, len) => {
         let num = 10 - len;
         return num < value ? false : true
@@ -71,17 +97,29 @@ let gameboards = (name) => {
 
     //place ships on board
     let placeShips = () => {
-        shipsInPlay = createShips(shipTypes);
+        
         console.log(shipsInPlay)
+
+        while(noOverlap(shipTypes) === false){
+            regenerateNumbers(shipTypes)
+            console.log("duplicates")
+        }
+
+        shipsInPlay = createShips(shipTypes);
         
         shipsInPlay.forEach((ship,index) => {
            let x = parseInt(ship.x);
            let y = parseInt(ship.y);
+           let num = Math.round(Math.random());
+
+        //    if (num === 1){horizontal = true}else{horizontal = false}
+
            
            for (let i = 0; i < ship.len; i++){
                 horizontal ? board[x][y+i] = index : board[x+i][y] = index;
            }
        })
+    
     };
 
     //remove ship from play
@@ -117,7 +155,7 @@ let gameboards = (name) => {
 
     // placeShips();
     
-     return {board, receieveAttack, boardName, shipTypes, updateShipTypes, placeShips}
+     return {board, receieveAttack, boardName, shipTypes, updateShipTypes, placeShips, noOverlap}
 
 };
 
