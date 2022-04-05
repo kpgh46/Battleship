@@ -114,18 +114,40 @@ let gameboards = (name) => {
 		shipsNotPlaced[0].y = ycoord;
 	};
 
+	let validateCoordinates = (coordinate, len) => {
+		let max = 10 - len;
+		if (coordinate > max) {
+			return false;
+		} else {
+			return true;
+		}
+	};
+
 	//places ships on board and adds to "ShipsInPlay"
 	let placeShips = () => {
 		let ship = shipsNotPlaced[0];
 		let x = parseInt(ship.x);
 		let y = parseInt(ship.y);
+		let len = shipsNotPlaced[0].len;
+		let validateHorizontal = validateCoordinates(y, len);
+		let validateVertical = validateCoordinates(x, len);
+
+		if (horizontal && !validateHorizontal) {
+			return;
+		}
+
+		if (!horizontal && !validateVertical) {
+			return;
+		}
 
 		for (let i = 0; i < ship.len; i++) {
-			if (horizontal) {
+			if (horizontal && validateHorizontal) {
 				board[x][y + i] = "X";
+				document.getElementById(`${ship.name}`).classList.add("hidden");
 			}
-			if (!horizontal) {
+			if (!horizontal && validateVertical) {
 				board[x + i][y] = "X";
+				document.getElementById(`${ship.name}`).classList.add("hidden");
 			}
 		}
 
