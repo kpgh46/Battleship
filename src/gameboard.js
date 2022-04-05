@@ -63,7 +63,6 @@ let gameboards = (name) => {
 				: (e.target.innerHTML = "Vertical");
 
 			horizontal = !horizontal;
-			console.log(horizontal);
 		});
 	};
 
@@ -116,6 +115,7 @@ let gameboards = (name) => {
 		shipsNotPlaced[0].y = ycoord;
 	};
 
+	//validates coordinates do not go exceed board limit
 	let validateLength = (coordinate, len) => {
 		let max = 10 - len;
 		if (coordinate > max) {
@@ -125,22 +125,31 @@ let gameboards = (name) => {
 		}
 	};
 
-	let validateOverlap = (x, y, len, direction) => {
-		for (let i = 0; i < len; i++) {
-			if (board[x][y + i] === " ") {
-				return true;
-			} else {
-				return false;
+	// let checkIfEmpty = (arr) => {
+	// 	arr.every((space) => space === "true");
+	// };
+
+	//validates ship coords do not overlap another ship
+	let validateOverlap = (x, y, len) => {
+		let arr = [];
+
+		if (horizontal) {
+			for (let i = 0; i < len; i++) {
+				arr.push(board[x][y + i]);
 			}
 		}
 
-		// if (!direction) {
-		// 	for (let i = 0; i < len; i++) {
-		// 		if (Number.isInteger(board[x + i][y])) {
-		// 			return false;
-		// 		}
-		// 	}
-		// }
+		if (!horizontal) {
+			for (let i = 0; i < len; i++) {
+				arr.push(board[x + i][y]);
+			}
+		}
+
+		let result = arr.every((space) => {
+			return space === " ";
+		});
+
+		return result;
 	};
 
 	//places ships on board and adds to "ShipsInPlay"
@@ -152,27 +161,25 @@ let gameboards = (name) => {
 		let validateHorizontal = validateLength(y, len);
 		let validateVertical = validateLength(x, len);
 
+		//if horizontal, check if y coord is too large OR if it overlaps.  If either return false, exit the function.
 		if (horizontal) {
-			if (
-				!validateHorizontal ||
-				!validateOverlap(x, y, len, horizontal)
-			) {
+			if (!validateHorizontal || !validateOverlap(x, y, len)) {
 				return;
 			}
 		}
 
 		if (!horizontal) {
-			if (!validateVertical || !validateOverlap(x, y, len, horizontal)) {
+			if (!validateVertical || !validateOverlap(x, y, len)) {
 				return;
 			}
 		}
 
 		for (let i = 0; i < ship.len; i++) {
-			if (horizontal && validateHorizontal) {
+			if (horizontal) {
 				board[x][y + i] = shipCount;
 				document.getElementById(`${ship.name}`).classList.add("hidden");
 			}
-			if (!horizontal && validateVertical) {
+			if (!horizontal) {
 				board[x + i][y] = shipCount;
 				document.getElementById(`${ship.name}`).classList.add("hidden");
 			}

@@ -19,8 +19,8 @@ let gameSetup = () => {
 
 	submitCarrier.addEventListener("click", () => {
 		playerGameBoard.updateCoordinates(
-			carrierXValue.value,
-			carrierYValue.value
+			parseInt(carrierXValue.value),
+			parseInt(carrierYValue.value)
 		);
 		playerGameBoard.placeShips();
 		console.log(playerGameBoard);
@@ -32,8 +32,8 @@ let gameSetup = () => {
 
 	submitBattleship.addEventListener("click", () => {
 		playerGameBoard.updateCoordinates(
-			battleshipXValue.value,
-			battleshipYValue.value
+			parseInt(battleshipXValue.value),
+			parseInt(battleshipYValue.value)
 		);
 		playerGameBoard.placeShips();
 		console.log(playerGameBoard);
