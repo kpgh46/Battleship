@@ -3,6 +3,7 @@ import { player } from "./player";
 
 let gameboards = (name) => {
 	let boardName = name;
+	let shipCount = 0;
 
 	let board = [
 		[" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
@@ -56,12 +57,13 @@ let gameboards = (name) => {
 	let horizontal = true;
 
 	let toggleDirection = () => {
-		document.querySelector("#direction").addEventListener("click", (e) => {
-			e.target.classList.contains("on")
-				? e.target.classList.remove("on")
-				: e.target.classList.add("on");
+		document.querySelector(".direction").addEventListener("click", (e) => {
+			e.target.innerHTML === "Vertical"
+				? (e.target.innerHTML = "Horizontal")
+				: (e.target.innerHTML = "Vertical");
 
 			horizontal = !horizontal;
+			console.log(horizontal);
 		});
 	};
 
@@ -114,7 +116,7 @@ let gameboards = (name) => {
 		shipsNotPlaced[0].y = ycoord;
 	};
 
-	let validateCoordinates = (coordinate, len) => {
+	let validateLength = (coordinate, len) => {
 		let max = 10 - len;
 		if (coordinate > max) {
 			return false;
@@ -123,39 +125,66 @@ let gameboards = (name) => {
 		}
 	};
 
+	let validateOverlap = (x, y, len, direction) => {
+		for (let i = 0; i < len; i++) {
+			if (board[x][y + i] === " ") {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		// if (!direction) {
+		// 	for (let i = 0; i < len; i++) {
+		// 		if (Number.isInteger(board[x + i][y])) {
+		// 			return false;
+		// 		}
+		// 	}
+		// }
+	};
+
 	//places ships on board and adds to "ShipsInPlay"
 	let placeShips = () => {
 		let ship = shipsNotPlaced[0];
 		let x = parseInt(ship.x);
 		let y = parseInt(ship.y);
 		let len = shipsNotPlaced[0].len;
-		let validateHorizontal = validateCoordinates(y, len);
-		let validateVertical = validateCoordinates(x, len);
+		let validateHorizontal = validateLength(y, len);
+		let validateVertical = validateLength(x, len);
 
-		if (horizontal && !validateHorizontal) {
-			return;
+		if (horizontal) {
+			if (
+				!validateHorizontal ||
+				!validateOverlap(x, y, len, horizontal)
+			) {
+				return;
+			}
 		}
 
-		if (!horizontal && !validateVertical) {
-			return;
+		if (!horizontal) {
+			if (!validateVertical || !validateOverlap(x, y, len, horizontal)) {
+				return;
+			}
 		}
 
 		for (let i = 0; i < ship.len; i++) {
 			if (horizontal && validateHorizontal) {
-				board[x][y + i] = "X";
+				board[x][y + i] = shipCount;
 				document.getElementById(`${ship.name}`).classList.add("hidden");
 			}
 			if (!horizontal && validateVertical) {
-				board[x + i][y] = "X";
+				board[x + i][y] = shipCount;
 				document.getElementById(`${ship.name}`).classList.add("hidden");
 			}
 		}
 
 		shipsNotPlaced.splice(0, 1);
 		shipsInPlay.push(ship);
+		shipCount++;
 	};
 
 	createGameShips();
+	toggleDirection();
 
 	return {
 		board,
