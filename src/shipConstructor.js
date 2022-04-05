@@ -1,25 +1,22 @@
+let newShip = (numberSize, name, x, y) => {
+	let len = numberSize;
+	let numberHit = 0;
 
-let newShip = (numberSize, name) => {
+	let isSunk = () => {
+		if (numberHit === len) {
+			console.log(`${name} has sunk!`);
+			return true;
+		} else {
+			return false;
+		}
+	};
 
-    let len = numberSize;
-    let numberHit = 0;
+	let hit = () => {
+		numberHit++;
+		isSunk();
+	};
 
-    let isSunk = () => {
-
-        if (numberHit === len){
-            console.log(`${name} has sunk!`);
-            return true;
-        }else {
-            return false;
-        }
-    }
-
-    let hit = () => {
-        numberHit++
-        isSunk()
-    };
-
-    return { len, hit, name, isSunk };
-} 
+	return { len, hit, name, isSunk, x, y };
+};
 
 module.exports = newShip;

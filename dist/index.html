@@ -11,23 +11,25 @@
         <h1 id = "title">BattleShip</h1>
     </div>
 
-    <div id = "name-prompt">
-       <form>
-          <div id = "name-container">
-            <label for = "player-name" id = "player-name">Enter your name:</label>
-            <input id = "input-name" type = "text" for = "player-name">
-          </div>
-
-          <button type = "button" id = "submit-name">Submit</button>
-       </form> 
-
-    </div>
-
     <div id = "middle">
       <div id = "name">Player Name</div>
       <div id = "board">
         <div id = "player-board"></div>
       </div>
+
+      <div id>
+        <div id = "carrier" class = "placement">
+          <label for = "carrier">Carrier</label>
+          <input type = "text" for = "carrier" id = "carrierx" placeholder="X">
+          <input type = "text" for = "carrier" id = "carriery" placeholder="Y">
+          <button id = submitCarrier>Submit</button>
+          <button id = "direction">V / H</button>
+        </div>
+        <!-- <div id = "battleship" class = "placement" ></div>
+        <div id = "cruiser" class = "placement"></div>
+        <div id = "submarine" class = "placement"></div>
+        <div id = "destroyer" class = "placement"></div>
+      </div> -->
 
 
     </div>

@@ -1,93 +1,147 @@
-let newShip = require('./shipConstructor');
-import {player} from "./player"
+let newShip = require("./shipConstructor");
+import { player } from "./player";
 
-let gameboards = (() => {
+let gameboards = (name) => {
+	let boardName = name;
 
-    let board = [
-        [" "," "," "," "," "," "," "," "," "," "],
-        [" "," "," "," "," "," "," "," "," "," "],
-        [" "," "," "," "," "," "," "," "," "," "],
-        [" "," "," "," "," "," "," "," "," "," "],
-        [" "," "," "," "," "," "," "," "," "," "],
-        [" "," "," "," "," "," "," "," "," "," "],
-        [" "," "," "," "," "," "," "," "," "," "],
-        [" "," "," "," "," "," "," "," "," "," "],
-        [" "," "," "," "," "," "," "," "," "," "],
-        [" "," "," "," "," "," "," "," "," "," "]
-        ]
+	let board = [
+		[" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+		[" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+		[" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+		[" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+		[" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+		[" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+		[" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+		[" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+		[" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+		[" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+	];
 
-    let shipTypes = [
-        // {"name" : "carrier","len" : 5},
-        {"name" : "battleship", "len" : 4},
-        {"name" : "cruiser","len" : 3},
-        // {"name" : "submarine","len" : 3},
-        {"name" : "destroyer", "len" : 2}
-        ]
+	let shipTypes = [
+		{
+			name: "carrier",
+			len: 5,
+			x: 0,
+			y: 1,
+		},
+		{
+			name: "battleship",
+			len: 4,
+			x: 2,
+			y: 6,
+		},
+		{
+			name: "cruiser",
+			len: 3,
+			x: 4,
+			y: 4,
+		},
+		{
+			name: "submarine",
+			len: 3,
+			x: 7,
+			y: 0,
+		},
+		{
+			name: "destroyer",
+			len: 2,
+			x: 8,
+			y: 6,
+		},
+	];
 
-    let shipInPlay = [];
-    let shipOutPlay = [];
-    let horizontal = true;
+	let shipsNotPlaced = [];
+	let shipsInPlay = [];
+	let shipsOutPlay = [];
+	let horizontal = true;
 
-    //create ships and add to "shipsInPlay"
-    let createShips = () => {
-        shipTypes.forEach(shiptype => {
-            let ship = newShip(shiptype.len,shiptype.name)
-            shipInPlay.push(ship);
-        })
-    }
+	let toggleDirection = () => {
+		document.querySelector("#direction").addEventListener("click", (e) => {
+			e.target.classList.contains("on")
+				? e.target.classList.remove("on")
+				: e.target.classList.add("on");
 
-    //place ships on board
-    let placeShips = () => {
-        createShips();
+			horizontal = !horizontal;
+		});
+	};
 
-       shipInPlay.forEach((ship,index) => {
-           let x = index;
-           let y = ship.len;
-           
-           for (let i = 0; i < ship.len; i++){
-            horizontal ? board[x][y+i] = index : board[x+i][y] = index;
-           }
-       })
-       console.log(board)
-    };
+	//create ships and add to "shipsInPlay"
+	let generateShips = (typesOfShips) => {
+		typesOfShips.forEach((shiptype) => {
+			let ship = newShip(
+				shiptype.len,
+				shiptype.name,
+				shiptype.x,
+				shiptype.y
+			);
+			shipsNotPlaced.push(ship);
+		});
+	};
 
-    //remove ship from play
-    let removeFromPlay = (index) => {
-        shipOutPlay.push(shipInPlay[index])
-    }
+	let createGameShips = () => generateShips(shipTypes);
 
-    let checkGameOver = () => {
-        if (shipInPlay.length === shipOutPlay.length){
-            console.log("game over")
-        }
-    }
+	//check this:
+	let checkGameOver = () => {
+		if (shipsInPlay.length === shipsOutPlay.length) {
+			console.log("game over");
+		}
+	};
 
-    //revieve attack and evaluate if hit
-    let receieveAttack = (x,y) => {
-        let attack = board[x][y];
+	let removeFromPlay = (index) => {
+		shipsOutPlay.push(shipsInPlay[index]);
+	};
 
-        if (Number.isInteger(attack)){
-            board[x][y] = "X";
-            shipInPlay[attack].hit();
+	//revieve attack and evaluate if hit
+	let receieveAttack = (x, y) => {
+		let attack = board[x][y];
 
-            if(shipInPlay[attack].isSunk()){
-                removeFromPlay(attack);
-                checkGameOver();
-            }
+		if (Number.isInteger(attack)) {
+			board[x][y] = "X";
+			shipsInPlay[attack].hit();
 
-        }  else {
-            board[x][y] = "O";
-        }
+			if (shipsInPlay[attack].isSunk()) {
+				removeFromPlay(attack);
+				checkGameOver();
+			}
+		} else {
+			board[x][y] = "O";
+		}
+	};
 
-        console.log(board)
-    }
+	//updates coords from GameSetup UI:
+	let updateCoordinates = (xcoord, ycoord) => {
+		shipsNotPlaced[0].x = xcoord;
+		shipsNotPlaced[0].y = ycoord;
+	};
 
-    placeShips();
-    receieveAttack(1,2)
-    receieveAttack(1,3)
-    receieveAttack(4,3)
-    
-     return {board, receieveAttack}
-})()
+	//places ships on board and adds to "ShipsInPlay"
+	let placeShips = () => {
+		let ship = shipsNotPlaced[0];
+		let x = parseInt(ship.x);
+		let y = parseInt(ship.y);
 
-export {gameboards}
+		for (let i = 0; i < ship.len; i++) {
+			board[x][y + i] = "X";
+		}
+
+		shipsNotPlaced.splice(0, 1);
+		shipsInPlay.push(ship);
+	};
+
+	createGameShips();
+
+	return {
+		board,
+		receieveAttack,
+		createGameShips,
+		boardName,
+		shipTypes,
+		placeShips,
+		shipsNotPlaced,
+		shipsInPlay,
+		updateCoordinates,
+		toggleDirection,
+	};
+};
+
+export { gameboards };

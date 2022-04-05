@@ -1,76 +1,83 @@
-h1{
-    text-align: center;
+h1 {
+	text-align: center;
 }
 
 #top {
-    height: 120px;
-    width: 100%;
-    border: 1px solid black;
+	height: 120px;
+	width: 100%;
+	border: 1px solid black;
 }
 
 #middle {
-    margin-top: 50px;
-    height: 470px;
-    width: 900px;
-    /* border: 1px solid green; */
-    margin-left: 5%;
-    margin-right: 5%;
+	margin-top: 50px;
+	height: 470px;
+	width: 900px;
+	/* border: 1px solid green; */
+	margin-left: 5%;
+	margin-right: 5%;
 }
 
 #player-board {
-    height: 400px;
-    width: 500px;
-    /* border: 1px solid green; */
-    display: flex;
-    flex-wrap: wrap;
+	height: 400px;
+	width: 500px;
+	/* border: 1px solid green; */
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .block {
-    height: 45px;
-    width: 45px;
-    border: 1px solid red;
+	height: 45px;
+	width: 45px;
+	border: 1px solid red;
 }
 
-#name-prompt {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid black;
-    height: 110px;
-    width: 200px;
-    border-radius: 10px;
-    background-color: lightsteelblue;
-    visibility: hidden;
+.placement {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+	border: 1px solid black;
+	height: 45px;
+	width: 230px;
+	border-radius: 10px;
+	background-color: lightsteelblue;
+	visibility: visible;
+}
+
+input {
+	width: 20px;
+}
+
+.on {
+	color: red;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
 }
 
-#name-container{
-    justify-content: left;
+#name-container {
+	justify-content: left;
 }
-
 
 button {
-    align-self: center;
-    margin-top: 10px;
+	align-self: center;
+	margin-top: 10px;
 }
 
 .hit {
-    background-color: green;
-    border: 1px solid blue;
+	background-color: green;
+	border: 1px solid blue;
 }
 
 .miss {
-    background-color: yellow;
-    border: 1px solid purple;
+	background-color: yellow;
+	border: 1px solid purple;
 }
 
 .ship {
-    background-color: grey;
+	background-color: grey;
 }
