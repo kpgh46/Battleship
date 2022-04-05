@@ -163,15 +163,19 @@ let gameboards = (name) => {
 
 		//if horizontal, check if y coord is too large OR if it overlaps.  If either return false, exit the function.
 		if (horizontal) {
-			if (!validateHorizontal || !validateOverlap(x, y, len)) {
+			if (!validateHorizontal) {
 				return;
 			}
 		}
 
 		if (!horizontal) {
-			if (!validateVertical || !validateOverlap(x, y, len)) {
+			if (!validateVertical) {
 				return;
 			}
+		}
+
+		if (!validateOverlap(x, y, len)) {
+			return;
 		}
 
 		for (let i = 0; i < ship.len; i++) {
