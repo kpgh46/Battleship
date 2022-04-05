@@ -121,7 +121,12 @@ let gameboards = (name) => {
 		let y = parseInt(ship.y);
 
 		for (let i = 0; i < ship.len; i++) {
-			board[x][y + i] = "X";
+			if (horizontal) {
+				board[x][y + i] = "X";
+			}
+			if (!horizontal) {
+				board[x + i][y] = "X";
+			}
 		}
 
 		shipsNotPlaced.splice(0, 1);

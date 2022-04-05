@@ -25,6 +25,7 @@ let gameSetup = () => {
 		console.log(playerGameBoard);
 		console.log(playerGameBoard.shipsNotPlaced);
 		console.log(playerGameBoard.shipsInPlay);
+		document.querySelector("#carrier").classList.add("hidden");
 	});
 };
 
