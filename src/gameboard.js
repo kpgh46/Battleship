@@ -125,10 +125,6 @@ let gameboards = (name) => {
 		}
 	};
 
-	// let checkIfEmpty = (arr) => {
-	// 	arr.every((space) => space === "true");
-	// };
-
 	//validates ship coords do not overlap another ship
 	let validateOverlap = (x, y, len) => {
 		let arr = [];
@@ -173,11 +169,11 @@ let gameboards = (name) => {
 				return;
 			}
 		}
-
+		//validate the current ship coordinates do not extend into another ship already on the board
 		if (!validateOverlap(x, y, len)) {
 			return;
 		}
-
+		//if above is validated, place ship on board and hide the coordinate html box
 		for (let i = 0; i < ship.len; i++) {
 			if (horizontal) {
 				board[x][y + i] = shipCount;
@@ -189,6 +185,7 @@ let gameboards = (name) => {
 			}
 		}
 
+		//once ship is placed on board, remove from shipsNotPlaced and add too shipsInPlay. increment index (shipCount++)
 		shipsNotPlaced.splice(0, 1);
 		shipsInPlay.push(ship);
 		shipCount++;
