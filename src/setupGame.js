@@ -5,15 +5,21 @@ let gameSetup = () => {
 	let submitCoordsArr = [
 		"carrier",
 		"battleship",
-		"submarine",
-		"cruiser",
-		"destroyer",
+		// "submarine",
+		// "cruiser",
+		// "destroyer",
 	];
 
 	let playerOne = player("Kevin");
 	let computerOne = computer();
 
 	let playerGameBoard = gameboards(playerOne.name);
+
+	let readyToPlay = () => {
+		if ((playerGameBoard.shipsInPlay.length = 2)) {
+			console.log("ready!");
+		}
+	};
 
 	submitCoordsArr.forEach((ship) => {
 		let submitButton = document.getElementById(`submit${ship}`);
@@ -29,9 +35,11 @@ let gameSetup = () => {
 
 			console.log(playerGameBoard);
 			console.log(playerGameBoard.shipsNotPlaced);
-			console.log(playerGameBoard.shipsInPlay);
+			console.log(playerGameBoard.shipsInPlay.length);
 		});
 	});
+
+	readyToPlay();
 };
 
 export { gameSetup };
