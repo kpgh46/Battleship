@@ -1,8 +1,7 @@
 let newShip = require("./shipConstructor");
 import { player } from "./player";
 
-let gameboards = (name) => {
-	let boardName = name;
+let gameboards = () => {
 	let shipCount = 0;
 
 	let board = [
@@ -66,7 +65,7 @@ let gameboards = (name) => {
 		});
 	};
 
-	//create ships and add to "shipsInPlay"
+	//create ships and add to "shipsNotPlaced"
 	let generateShips = (typesOfShips) => {
 		typesOfShips.forEach((shiptype) => {
 			let ship = newShip(
@@ -156,6 +155,15 @@ let gameboards = (name) => {
 		let len = shipsNotPlaced[0].len;
 		let validateHorizontal = validateLength(y, len);
 		let validateVertical = validateLength(x, len);
+		let random = Math.round(Math.random());
+
+		if (random === 1) {
+			horizontal = true;
+		}
+
+		if (random === 0) {
+			horizontal = false;
+		}
 
 		//if horizontal, check if y coord is too large OR if it overlaps.  If either return false, exit the function.
 		if (horizontal) {
@@ -177,11 +185,19 @@ let gameboards = (name) => {
 		for (let i = 0; i < ship.len; i++) {
 			if (horizontal) {
 				board[x][y + i] = shipCount;
-				document.getElementById(`${ship.name}`).classList.add("hidden");
+				if (document.getElementById(`${ship.name}`) != null) {
+					document
+						.getElementById(`${ship.name}`)
+						.classList.add("hidden");
+				}
 			}
 			if (!horizontal) {
 				board[x + i][y] = shipCount;
-				document.getElementById(`${ship.name}`).classList.add("hidden");
+				if (document.getElementById(`${ship.name}`) != null) {
+					document
+						.getElementById(`${ship.name}`)
+						.classList.add("hidden");
+				}
 			}
 		}
 
@@ -198,7 +214,6 @@ let gameboards = (name) => {
 		board,
 		receieveAttack,
 		createGameShips,
-		boardName,
 		shipTypes,
 		placeShips,
 		shipsNotPlaced,

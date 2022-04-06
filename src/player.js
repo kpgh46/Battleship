@@ -1,29 +1,30 @@
 import { gameboards } from "./gameboard";
 
-let player = (name) => {
+let player = (name, enemyBoard) => {
 	let attack = (x, y) => {
-		if (gameboards.board[x][y] === "X" || gameboards.board[x][y] === "O") {
+		if (enemyBoard.board[x][y] === "X" || enemyBoard.board[x][y] === "O") {
 			console.log("this space is already taken");
 		} else {
-			gameboards.receieveAttack(x, y);
+			enemyBoard.receieveAttack(x, y);
 		}
 	};
 
 	return { attack, name };
 };
 
-let computer = () => {
-	let attack = (x) => {
-		x = Math.floor(Math.random() * 11);
+let computer = (name, enemyBoard) => {
+	let attack = () => {
+		let x = Math.floor(Math.random() * 10);
+		let y = Math.floor(Math.random() * 10);
 
-		if (gameboards.board[x][y] === "X" || gameboards.board[x][y] === "O") {
+		if (enemyBoard.board[x][y] === "X" || enemyBoard.board[x][y] === "O") {
 			console.log("this space is already taken");
 		} else {
-			gameboards.receieveAttack(x, x);
+			enemyBoard.receieveAttack(x, y);
 		}
 	};
 
-	return { attack };
+	return { name, attack };
 };
 
 export { player, computer };
