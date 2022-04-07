@@ -1,7 +1,7 @@
 let newShip = require("./shipConstructor");
 import { player } from "./player";
 
-let gameboards = () => {
+let gameboards = (name) => {
 	let shipCount = 0;
 
 	let board = [
@@ -220,6 +220,7 @@ let gameboards = () => {
 		shipsInPlay,
 		updateCoordinates,
 		toggleDirection,
+		name,
 	};
 };
 
