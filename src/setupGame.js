@@ -60,14 +60,34 @@ let computerSetup = (playerboard) => {
 
 let playRound = (playerboard, computerboard) => {
 	//game control
+	let game = true;
 	let turn = 0;
 	let players = [];
 	let active = players[0];
+	let boards = [computerboard, playerboard];
 
 	//generate players with respective enemy boards
 	let playerOne = player("Kevin", computerboard);
 	let computerOne = computer("Watson", playerboard);
 	players.push(playerOne, computerOne);
+
+	let toggleTurn = () => {
+		turn = turn === 0 ? 1 : 0;
+	};
+
+	let updateGame = () => {
+		dom(boards[turn]).renderBoard();
+		toggleTurn();
+		active = players[turn];
+	};
+
+	let computerSelection = () => {
+		setTimeout(() => {
+			computerOne.attack();
+			console.log("computer attack");
+			updateGame();
+		}, 750);
+	};
 
 	let playerAttack = () => {
 		document.addEventListener("click", (e) => {
@@ -77,15 +97,20 @@ let playRound = (playerboard, computerboard) => {
 			let y = parseInt(coord.split("")[1]);
 
 			playerOne.attack(x, y);
-			dom(computerboard).renderBoard();
+			console.log(turn);
+			updateGame();
+			computerSelection();
 		});
 	};
 
 	let play = () => {
 		playerAttack();
+		if ((turn = 1)) {
+			computerSelection();
+		}
 	};
 
-	play();
+	playerAttack();
 
 	// console.log(playerOne);
 	// console.log(computerOne);
