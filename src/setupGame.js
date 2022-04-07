@@ -69,6 +69,17 @@ let playRound = (playerboard, computerboard) => {
 	let computerOne = computer("Watson", playerboard);
 	players.push(playerOne, computerOne);
 
+	let captureCoordinates = () => {
+		document.addEventListener("click", (e) => {
+			let coord = e.target.dataset.id;
+
+			let x = parseInt(coord.split("")[0]);
+			let y = parseInt(coord.split("")[1]);
+		});
+	};
+
+	captureCoordinates();
+
 	// console.log(playerOne);
 	// console.log(computerOne);
 	// computerOne.attack();
