@@ -4,7 +4,9 @@ let dom = (userBoard) => {
 	let gameboard = document.querySelector(`#${userBoard.name}-board`);
 
 	let renderBoard = () => {
-		clearBoard();
+		if (gameboard != null) {
+			clearBoard();
+		}
 
 		let count = 0;
 

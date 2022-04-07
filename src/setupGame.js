@@ -13,6 +13,7 @@ let playerSetup = () => {
 
 	//initiate player gameboard
 	let playerGameBoard = gameboards("player");
+	dom(playerGameBoard).renderBoard();
 
 	let ifAllShipsPlaced = () => {
 		if (playerGameBoard.shipsInPlay.length === 2) {
@@ -33,8 +34,9 @@ let playerSetup = () => {
 				parseInt(shipY.value)
 			);
 			playerGameBoard.placeShips();
+			console.log(playerGameBoard.horizontal);
 			dom(playerGameBoard).renderBoard();
-			// ifAllShipsPlaced();
+			ifAllShipsPlaced();
 		});
 	});
 
@@ -48,6 +50,8 @@ let computerSetup = (playerboard) => {
 	for (let i = 0; i < 5; i++) {
 		computerGameBoard.placeShips();
 	}
+
+	dom(computerGameBoard).renderBoard();
 
 	playRound(playerboard, computerGameBoard);
 
@@ -63,7 +67,7 @@ let playRound = (playerboard, computerboard) => {
 	//generate players with respective enemy boards
 	let playerOne = player("Kevin", computerboard);
 	let computerOne = computer("Watson", playerboard);
-	player.push(playerOne, computerOne);
+	players.push(playerOne, computerOne);
 
 	// console.log(playerOne);
 	// console.log(computerOne);

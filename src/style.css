@@ -17,7 +17,21 @@ h1 {
 	margin-right: 5%;
 }
 
+#board {
+	height: 500px;
+	width: 1000px;
+	display: flex;
+}
+
 #player-board {
+	height: 400px;
+	width: 500px;
+	/* border: 1px solid green; */
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#computer-board {
 	height: 400px;
 	width: 500px;
 	/* border: 1px solid green; */

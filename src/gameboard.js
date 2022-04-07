@@ -62,6 +62,7 @@ let gameboards = (name) => {
 				: (e.target.innerHTML = "Vertical");
 
 			horizontal = !horizontal;
+			console.log(horizontal);
 		});
 	};
 
@@ -157,12 +158,14 @@ let gameboards = (name) => {
 		let validateVertical = validateLength(x, len);
 		let random = Math.round(Math.random());
 
-		if (random === 1) {
-			horizontal = true;
-		}
+		if (name === "computer") {
+			if (random === 1) {
+				horizontal = true;
+			}
 
-		if (random === 0) {
-			horizontal = false;
+			if (random === 0) {
+				horizontal = false;
+			}
 		}
 
 		//if horizontal, check if y coord is too large OR if it overlaps.  If either return false, exit the function.
@@ -221,6 +224,7 @@ let gameboards = (name) => {
 		updateCoordinates,
 		toggleDirection,
 		name,
+		horizontal,
 	};
 };
 
