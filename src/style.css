@@ -4,7 +4,7 @@ h1 {
 
 body {
 	width: 1000px;
-	border: 1px solid purple;
+	/* border: 1px solid purple; */
 	height: 1000px;
 	margin-left: 2%;
 	position: relative;
@@ -66,8 +66,8 @@ div#name-tags {
 }
 
 .block {
-	height: 45px;
-	width: 45px;
+	height: 48px;
+	width: 47px;
 	border: 1px solid red;
 }
 
