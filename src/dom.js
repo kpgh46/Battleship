@@ -4,8 +4,9 @@ let dom = (userBoard) => {
 	let gameboard = document.querySelector(`#${userBoard.name}-board`);
 
 	let renderBoard = () => {
+		showSunkShips();
 		if (gameboard != null) {
-			clearBoard();
+			clearBoard(gameboard);
 		}
 
 		let count = 0;
@@ -40,9 +41,22 @@ let dom = (userBoard) => {
 		});
 	};
 
-	let clearBoard = () => {
-		while (gameboard.firstChild) {
-			gameboard.removeChild(gameboard.firstChild);
+	let showSunkShips = () => {
+		let sunkShips = userBoard.shipsOutPlay;
+		let container = document.getElementById(`${userBoard.name}-sunk-ships`);
+
+		clearBoard(container);
+
+		sunkShips.forEach((ship) => {
+			let div = document.createElement("div");
+			div.textContent = ship.name;
+			container.appendChild(div);
+		});
+	};
+
+	let clearBoard = (section) => {
+		while (section.firstChild) {
+			section.removeChild(section.firstChild);
 		}
 	};
 

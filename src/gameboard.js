@@ -221,6 +221,7 @@ let gameboards = (name) => {
 		placeShips,
 		shipsNotPlaced,
 		shipsInPlay,
+		shipsOutPlay,
 		updateCoordinates,
 		toggleDirection,
 		name,
