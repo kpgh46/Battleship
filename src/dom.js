@@ -16,9 +16,11 @@ let dom = (userBoard) => {
 				block.classList.add("block");
 				if (count < 10) {
 					block.dataset.id = count.toString().padStart(2, "0");
+					block.dataset.name = userBoard.name;
 					count += 1;
 				} else {
 					block.dataset.id = count.toString();
+					block.dataset.name = userBoard.name;
 					count += 1;
 				}
 

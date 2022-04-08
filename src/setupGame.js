@@ -91,15 +91,17 @@ let playRound = (playerboard, computerboard) => {
 
 	let playerAttack = () => {
 		document.addEventListener("click", (e) => {
-			let coord = e.target.dataset.id;
+			if (e.target.dataset.name === "computer") {
+				let coord = e.target.dataset.id;
 
-			let x = parseInt(coord.split("")[0]);
-			let y = parseInt(coord.split("")[1]);
+				let x = parseInt(coord.split("")[0]);
+				let y = parseInt(coord.split("")[1]);
 
-			playerOne.attack(x, y);
-			console.log(turn);
-			updateGame();
-			computerSelection();
+				playerOne.attack(x, y);
+				console.log(turn);
+				updateGame();
+				computerSelection();
+			}
 		});
 	};
 
