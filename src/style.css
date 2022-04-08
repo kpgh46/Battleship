@@ -2,19 +2,31 @@ h1 {
 	text-align: center;
 }
 
+body {
+	width: 1000px;
+	border: 1px solid purple;
+	height: 1000px;
+	margin-left: 2%;
+	position: relative;
+}
+
 #top {
-	height: 120px;
-	width: 100%;
-	border: 1px solid black;
+	height: 100px;
+	width: 1000px;
+	/* border: 1px solid black; */
+	text-align: center;
+}
+
+#top .direction {
+	margin-top: 0px;
 }
 
 #middle {
 	margin-top: 50px;
 	height: 470px;
 	width: 900px;
+
 	/* border: 1px solid green; */
-	margin-left: 5%;
-	margin-right: 5%;
 }
 
 #board {
@@ -24,13 +36,17 @@ h1 {
 }
 
 #name-tags {
-	height: 100px;
+	height: 55px;
 	width: 1000px;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	margin-bottom: 10px;
 	border: 1px solid green;
-	align-items: flex-start;
+	align-items: flex-end;
+}
+
+div#name-tags {
+	color: blue;
 }
 
 #player-board {
@@ -57,16 +73,18 @@ h1 {
 
 .placement {
 	position: absolute;
-	top: 50%;
+	top: 13%;
 	left: 50%;
 	margin-right: -50%;
 	transform: translate(-50%, -50%);
 	border: 1px solid black;
 	height: 45px;
-	width: 290px;
+	width: 260px;
 	border-radius: 10px;
 	background-color: lightsteelblue;
+	text-align: center;
 	visibility: visible;
+	padding-top: 6px;
 }
 
 .hidden {
