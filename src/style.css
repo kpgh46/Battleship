@@ -23,6 +23,16 @@ h1 {
 	display: flex;
 }
 
+#name-tags {
+	height: 100px;
+	width: 1000px;
+	display: flex;
+	justify-content: space-around;
+	margin-bottom: 10px;
+	border: 1px solid green;
+	align-items: flex-start;
+}
+
 #player-board {
 	height: 400px;
 	width: 500px;
@@ -53,7 +63,7 @@ h1 {
 	transform: translate(-50%, -50%);
 	border: 1px solid black;
 	height: 45px;
-	width: 260px;
+	width: 290px;
 	border-radius: 10px;
 	background-color: lightsteelblue;
 	visibility: visible;
@@ -86,6 +96,10 @@ button {
 	margin-top: 10px;
 }
 
+#submitcarrier {
+	border-width: 1px;
+}
+
 .hit {
 	background-color: green;
 	border: 1px solid blue;
@@ -98,4 +112,8 @@ button {
 
 .ship {
 	background-color: grey;
+}
+
+.ship[data-name="computer"] {
+	background-color: white;
 }
