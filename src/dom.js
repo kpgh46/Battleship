@@ -18,6 +18,7 @@ let dom = (userBoard) => {
 				if (count < 10) {
 					block.dataset.id = count.toString().padStart(2, "0");
 					block.dataset.name = userBoard.name;
+					// block.textContent = count;
 					count += 1;
 				} else {
 					block.dataset.id = count.toString();

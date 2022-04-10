@@ -71,6 +71,7 @@ let playRound = (playerboard, computerboard) => {
 	let computerOne = computer("Watson", playerboard);
 	players.push(playerOne, computerOne);
 
+	//not sure I need this???*******
 	let toggleTurn = () => {
 		turn = turn === 0 ? 1 : 0;
 	};
@@ -89,7 +90,7 @@ let playRound = (playerboard, computerboard) => {
 		}, 750);
 	};
 
-	let playerAttack = () => {
+	let playRound = () => {
 		document.addEventListener("click", (e) => {
 			if (e.target.dataset.name === "computer") {
 				let coord = e.target.dataset.id;
@@ -105,24 +106,7 @@ let playRound = (playerboard, computerboard) => {
 		});
 	};
 
-	let play = () => {
-		playerAttack();
-		if ((turn = 1)) {
-			computerSelection();
-		}
-	};
-
-	playerAttack();
-
-	// console.log(playerOne);
-	// console.log(computerOne);
-	// computerOne.attack();
-	// playerOne.attack(2, 3);
-	// playerOne.attack(7, 2);
-	// computerOne.attack();
-	// computerOne.attack();
-	// console.log(playerboard);
-	// console.log(computerboard);
+	playRound();
 };
 
 export { playerSetup };

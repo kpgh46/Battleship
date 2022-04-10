@@ -24,7 +24,7 @@ body {
 #middle {
 	margin-top: 50px;
 	height: 470px;
-	width: 900px;
+	width: 990px;
 
 	/* border: 1px solid green; */
 }
@@ -33,6 +33,37 @@ body {
 	height: 500px;
 	width: 1000px;
 	display: flex;
+	margin-left: 40px;
+}
+
+#horizontal-numbers {
+	height: 20px;
+	width: 500px;
+	display: flex;
+	/* margin-left: 24px; */
+	/* justify-content: space-around; */
+}
+
+#vertical-numbers {
+	position: absolute;
+	/* border: 1px solid green; */
+	width: fit-content;
+	width: 20px;
+	margin-left: 500px;
+}
+
+#horizontal-numbers .block {
+	border-color: white;
+	height: fit-content;
+	justify-content: center;
+	/* border-color: green; */
+}
+
+#vertical-numbers .block {
+	align-items: center;
+	justify-content: left;
+	border-color: white;
+	width: fit-content;
 }
 
 #name-tags {
@@ -63,12 +94,14 @@ div#name-tags {
 	/* border: 1px solid green; */
 	display: flex;
 	flex-wrap: wrap;
+	margin-left: 20px;
 }
 
 .block {
 	height: 48px;
 	width: 47px;
 	border: 1px solid red;
+	display: flex;
 }
 
 .placement {
