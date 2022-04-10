@@ -84,7 +84,7 @@ let gameboards = (name) => {
 	//check this:
 	let checkGameOver = () => {
 		if (shipsInPlay.length === shipsOutPlay.length) {
-			console.log("game over");
+			return true;
 		}
 	};
 
@@ -102,7 +102,9 @@ let gameboards = (name) => {
 
 			if (shipsInPlay[attack].isSunk()) {
 				removeFromPlay(attack);
-				checkGameOver();
+				if (checkGameOver()) {
+					console.log("Game over!!");
+				}
 			}
 		} else {
 			board[x][y] = "O";
