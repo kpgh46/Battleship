@@ -41,6 +41,10 @@ let dom = (userBoard) => {
 		});
 	};
 
+	let capitalize = (string) => {
+		return string.charAt(0).toUpperCase() + string.slice(1);
+	};
+
 	let showSunkShips = () => {
 		let sunkShips = userBoard.shipsOutPlay;
 		let container = document.getElementById(`${userBoard.name}-sunk-ships`);
@@ -49,7 +53,8 @@ let dom = (userBoard) => {
 
 		sunkShips.forEach((ship) => {
 			let div = document.createElement("div");
-			div.textContent = ship.name;
+			let name = capitalize(ship.name);
+			div.textContent = name;
 			container.appendChild(div);
 		});
 	};
