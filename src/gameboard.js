@@ -1,162 +1,234 @@
-let newShip = require('./shipConstructor');
-import {player} from "./player"
+let newShip = require("./shipConstructor");
+import { player } from "./player";
 
 let gameboards = (name) => {
+	let shipCount = 0;
 
-    let boardName = name;
+	let board = [
+		[" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+		[" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+		[" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+		[" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+		[" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+		[" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+		[" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+		[" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+		[" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+		[" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+	];
 
-    let board = [
-        [" "," "," "," "," "," "," "," "," "," "],
-        [" "," "," "," "," "," "," "," "," "," "],
-        [" "," "," "," "," "," "," "," "," "," "],
-        [" "," "," "," "," "," "," "," "," "," "],
-        [" "," "," "," "," "," "," "," "," "," "],
-        [" "," "," "," "," "," "," "," "," "," "],
-        [" "," "," "," "," "," "," "," "," "," "],
-        [" "," "," "," "," "," "," "," "," "," "],
-        [" "," "," "," "," "," "," "," "," "," "],
-        [" "," "," "," "," "," "," "," "," "," "]
-        ]
+	let shipTypes = [
+		{
+			name: "carrier",
+			len: 5,
+			x: 0,
+			y: 1,
+		},
+		{
+			name: "battleship",
+			len: 4,
+			x: 2,
+			y: 6,
+		},
+		{
+			name: "cruiser",
+			len: 3,
+			x: 4,
+			y: 4,
+		},
+		{
+			name: "submarine",
+			len: 3,
+			x: 7,
+			y: 0,
+		},
+		{
+			name: "destroyer",
+			len: 2,
+			x: 8,
+			y: 6,
+		},
+	];
 
-    let generateRandom = (len) => {
-        let num = 10 - len;
-        return Math.floor(Math.random() * num);
-    }
+	let shipsNotPlaced = [];
+	let shipsInPlay = [];
+	let shipsOutPlay = [];
+	let horizontal = true;
 
-    let shipTypes = [
-        {"name" : "carrier","len" : 5, "x" : Math.floor(Math.random() * 10), "y": generateRandom(5)},
-        {"name" : "battleship", "len" : 4, "x" : Math.floor(Math.random() * 10), "y": generateRandom(4)},
-        {"name" : "cruiser","len" : 3, "x" : Math.floor(Math.random() * 10), "y": generateRandom(3)},
-        {"name" : "submarine","len" : 3, "x" : Math.floor(Math.random() * 10), "y": generateRandom(3)},
-        {"name" : "destroyer", "len" : 2, "x" : Math.floor(Math.random() * 10), "y": generateRandom(2)}
-        ]
+	let toggleDirection = () => {
+		document.querySelector(".direction").addEventListener("click", (e) => {
+			e.target.innerHTML === "Vertical"
+				? (e.target.innerHTML = "Horizontal")
+				: (e.target.innerHTML = "Vertical");
 
+			horizontal = !horizontal;
+			console.log(horizontal);
+		});
+	};
 
+	//create ships and add to "shipsNotPlaced"
+	let generateShips = (typesOfShips) => {
+		typesOfShips.forEach((shiptype) => {
+			let ship = newShip(
+				shiptype.len,
+				shiptype.name,
+				shiptype.x,
+				shiptype.y
+			);
+			shipsNotPlaced.push(ship);
+		});
+	};
 
-    let noOverlap = (ship) => {
-        let arrX = []
-        ship.forEach(item => arrX.push(item.x));
-        let unique = [...new Set(arrX)];
-        
+	let createGameShips = () => generateShips(shipTypes);
 
-        if (arrX.length === unique.length){
-            return true;
-        }else {
-            return false;
-        }
+	//check this:
+	let checkGameOver = () => {
+		if (shipsInPlay.length === shipsOutPlay.length) {
+			return true;
+		}
+	};
 
-    }
+	let removeFromPlay = (index) => {
+		shipsOutPlay.push(shipsInPlay[index]);
+	};
 
-    let regenerateNumbers = (ship) => {
-        console.log("test")
-        ship.forEach(coord => {
-            coord.x = Math.floor(Math.random() * 10)
-        })
-        
-    }
+	//revieve attack and evaluate if hit
+	let receieveAttack = (x, y) => {
+		let attack = board[x][y];
 
+		if (Number.isInteger(attack)) {
+			board[x][y] = "X";
+			shipsInPlay[attack].hit();
 
+			if (shipsInPlay[attack].isSunk()) {
+				removeFromPlay(attack);
+				if (checkGameOver()) {
+					console.log("Game over!!");
+				}
+			}
+		} else {
+			board[x][y] = "O";
+		}
+	};
 
-    let verifyShipPlacement = (value, len) => {
-        let num = 10 - len;
-        return num < value ? false : true
-    
-    }
+	//updates coords from GameSetup UI:
+	let updateCoordinates = (xcoord, ycoord) => {
+		shipsNotPlaced[0].x = xcoord;
+		shipsNotPlaced[0].y = ycoord;
+	};
 
-    let updateShipTypes = () => {
+	//validates coordinates do not go exceed board limit
+	let validateLength = (coordinate, len) => {
+		let max = 10 - len;
+		if (coordinate > max) {
+			return false;
+		} else {
+			return true;
+		}
+	};
 
-        shipTypes.forEach(ship => {
-           let xVal = document.getElementById(`${ship.name}`).value; 
-           let yVal = document.getElementById(`${ship.name}Y`).value;
-           ship.x = xVal;
+	//validates ship coords do not overlap another ship
+	let validateOverlap = (x, y, len) => {
+		let arr = [];
 
-            if (verifyShipPlacement(yVal,ship.len)){
-                    ship.y = yVal
-            }else{
-                console.log("does not work!")
-            }
-        })
-    }
-    
-    
-    //create ships and add to "shipsInPlay"
-    let createShips = (typesOfShips) => {
-        let shipsArr = [];
+		if (horizontal) {
+			for (let i = 0; i < len; i++) {
+				arr.push(board[x][y + i]);
+			}
+		}
 
-        typesOfShips.forEach(shiptype => {
-            let ship = newShip(shiptype.len,shiptype.name,shiptype.x,shiptype.y);
-            shipsArr.push(ship);
-        })
+		if (!horizontal) {
+			for (let i = 0; i < len; i++) {
+				arr.push(board[x + i][y]);
+			}
+		}
 
-        return shipsArr;
-    }
+		let result = arr.every((space) => {
+			return space === " ";
+		});
 
-    let shipsInPlay;
-    let shipsOutPlay = [];
-    let horizontal = true;
+		return result;
+	};
 
-    //place ships on board
-    let placeShips = () => {
-        
-        console.log(shipsInPlay)
+	//places ships on board and adds to "ShipsInPlay"
+	let placeShips = () => {
+		let ship = shipsNotPlaced[0];
+		let x = parseInt(ship.x);
+		let y = parseInt(ship.y);
+		let len = shipsNotPlaced[0].len;
+		let validateHorizontal = validateLength(y, len);
+		let validateVertical = validateLength(x, len);
+		let random = Math.round(Math.random());
 
-        while(noOverlap(shipTypes) === false){
-            regenerateNumbers(shipTypes)
-            console.log("duplicates")
-        }
+		if (name === "computer") {
+			if (random === 1) {
+				horizontal = true;
+			}
 
-        shipsInPlay = createShips(shipTypes);
-        
-        shipsInPlay.forEach((ship,index) => {
-           let x = parseInt(ship.x);
-           let y = parseInt(ship.y);
-           let num = Math.round(Math.random());
+			if (random === 0) {
+				horizontal = false;
+			}
+		}
 
-        //    if (num === 1){horizontal = true}else{horizontal = false}
+		//if horizontal, check if y coord is too large OR if it overlaps.  If either return false, exit the function.
+		if (horizontal) {
+			if (!validateHorizontal) {
+				return;
+			}
+		}
 
-           
-           for (let i = 0; i < ship.len; i++){
-                horizontal ? board[x][y+i] = index : board[x+i][y] = index;
-           }
-       })
-    
-    };
+		if (!horizontal) {
+			if (!validateVertical) {
+				return;
+			}
+		}
+		//validate the current ship coordinates do not extend into another ship already on the board
+		if (!validateOverlap(x, y, len)) {
+			return;
+		}
+		//if above is validated, place ship on board and hide the coordinate html box
+		for (let i = 0; i < ship.len; i++) {
+			if (horizontal) {
+				board[x][y + i] = shipCount;
+				if (document.getElementById(`${ship.name}`) != null) {
+					document
+						.getElementById(`${ship.name}`)
+						.classList.add("hidden");
+				}
+			}
+			if (!horizontal) {
+				board[x + i][y] = shipCount;
+				if (document.getElementById(`${ship.name}`) != null) {
+					document
+						.getElementById(`${ship.name}`)
+						.classList.add("hidden");
+				}
+			}
+		}
 
-    //remove ship from play
-    let removeFromPlay = (index) => {
-        shipsOutPlay.push(shipsInPlay[index])
-    }
+		//once ship is placed on board, remove from shipsNotPlaced and add too shipsInPlay. increment index (shipCount++)
+		shipsNotPlaced.splice(0, 1);
+		shipsInPlay.push(ship);
+		shipCount++;
+	};
 
-    let checkGameOver = () => {
-        if (shipsInPlay.length === shipsOutPlay.length){
-            console.log("game over")
-        }
-    }
+	createGameShips();
+	toggleDirection();
 
-    //revieve attack and evaluate if hit
-    let receieveAttack = (x,y) => {
-        let attack = board[x][y];
-
-        if (Number.isInteger(attack)){
-            board[x][y] = "X";
-            shipsInPlay[attack].hit();
-
-            if(shipsInPlay[attack].isSunk()){
-                removeFromPlay(attack);
-                checkGameOver();
-            }
-
-        }  else {
-            board[x][y] = "O";
-        }
-
-        console.log(board)
-    }
-
-    // placeShips();
-    
-     return {board, receieveAttack, boardName, shipTypes, updateShipTypes, placeShips, noOverlap}
-
+	return {
+		board,
+		receieveAttack,
+		createGameShips,
+		shipTypes,
+		placeShips,
+		shipsNotPlaced,
+		shipsInPlay,
+		shipsOutPlay,
+		updateCoordinates,
+		toggleDirection,
+		name,
+		horizontal,
+	};
 };
 
-export {gameboards}
+export { gameboards };

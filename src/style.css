@@ -1,125 +1,137 @@
-h1{
-    text-align: center;
+h1 {
+	text-align: center;
+}
+
+body {
+	width: 1000px;
+	/* border: 1px solid purple; */
+	height: 1000px;
+	margin-left: 2%;
+	position: relative;
 }
 
 #top {
-    height: 120px;
-    width: 100%;
-    border: 1px solid black;
+	height: 100px;
+	width: 1000px;
+	/* border: 1px solid black; */
+	text-align: center;
+}
+
+#top .direction {
+	margin-top: 0px;
 }
 
 #middle {
-    margin-top: 50px;
-    height: 470px;
-    width: 900px;
-    /* border: 1px solid green; */
-    margin-left: 5%;
-    margin-right: 5%;
+	margin-top: 50px;
+	height: 470px;
+	width: 900px;
+
+	/* border: 1px solid green; */
 }
 
-#board{
-    display: flex;
+#board {
+	height: 500px;
+	width: 1000px;
+	display: flex;
 }
 
-.game-cells {
-    height: 400px;
-    width: 500px;
-    /* border: 1px solid green; */
-    display: flex;
-    flex-wrap: wrap;
+#name-tags {
+	height: 55px;
+	width: 1000px;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+	border: 1px solid green;
+	align-items: flex-end;
+}
+
+div#name-tags {
+	color: blue;
+}
+
+#player-board {
+	height: 400px;
+	width: 500px;
+	/* border: 1px solid green; */
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#computer-board {
+	height: 400px;
+	width: 500px;
+	/* border: 1px solid green; */
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .block {
-    height: 40px;
-    width: 40px;
-    border: 1px solid red;
+	height: 48px;
+	width: 47px;
+	border: 1px solid red;
 }
 
-#name-prompt {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid black;
-    height: 410px;
-    width: 230px;
-    border-radius: 10px;
-    background-color: lightsteelblue;
-    visibility: visible;
+.placement {
+	position: absolute;
+	top: 13%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+	border: 1px solid black;
+	height: 45px;
+	width: 260px;
+	border-radius: 10px;
+	background-color: lightsteelblue;
+	text-align: center;
+	visibility: visible;
+	padding-top: 6px;
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+input {
+	width: 20px;
+}
+
+.on {
+	color: red;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
 }
 
-#name-container{
-    justify-content: left;
+#name-container {
+	justify-content: left;
 }
-
 
 button {
-    align-self: center;
-    margin-top: 10px;
+	align-self: center;
+	margin-top: 10px;
+}
+
+#submitcarrier {
+	border-width: 1px;
 }
 
 .hit {
-    background-color: green;
-    border: 1px solid blue;
+	background-color: green;
+	border: 1px solid blue;
 }
 
 .miss {
-    background-color: red;
-    border: 1px solid purple;
+	background-color: yellow;
+	border: 1px solid purple;
 }
 
 .ship {
-    background-color: grey;
+	background-color: grey;
 }
 
-#ships-container{
-    margin-top: 30px;
-    border: 1px solid black;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-
-}
-
-.ship-start{
-    display: flex;
-
-}
-
-.drop-zone--over{
-    opacity:0.5;
-    border: 1px solid yellow;
-  }
-
-.shipBlocks {
-    height: 40px;
-    width: 40px;
-    border: 1px solid brown;
-}
-
-.dragging{
-    border:3px solid green;
-}
-
-.ship-start{
-    /* border: 1px solid black; */
-    display: flex;
-    height: 40px;
-    /* width: auto; */
-}
-
-.coordinate-section{
-    border: 1px solid black;
-}
-
-.coordinates{
-    width: 30px;
+.ship[data-name="computer"] {
+	background-color: blue;
 }

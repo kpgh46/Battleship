@@ -1,34 +1,30 @@
-import {gameboards} from './gameboard'
+import { gameboards } from "./gameboard";
 
-let userPlayer = (name, computerBoard) => {
+let player = (name, enemyBoard) => {
+	let attack = (x, y) => {
+		if (enemyBoard.board[x][y] === "X" || enemyBoard.board[x][y] === "O") {
+			console.log("this space is already taken");
+		} else {
+			enemyBoard.receieveAttack(x, y);
+		}
+	};
 
-    let attack = (x,y) => {
-        if (computerBoard.board[x][y] === "X" || computerBoard.board[x][y] === "O"){
-            console.log("this space is already taken")
-        } else {
-        computerBoard.receieveAttack(x,y)
-        }
-    }
+	return { attack, name };
+};
 
-    return {attack, name}   
+let computer = (name, enemyBoard) => {
+	let attack = () => {
+		let x = Math.floor(Math.random() * 10);
+		let y = Math.floor(Math.random() * 10);
 
-}
+		if (enemyBoard.board[x][y] === "X" || enemyBoard.board[x][y] === "O") {
+			console.log("this space is already taken");
+		} else {
+			enemyBoard.receieveAttack(x, y);
+		}
+	};
 
-let computerPlayer = (name, playerBoard ) => {
-    
-    let attack = () => {
-        let x = Math.floor(Math.random() * 9);
-        let y = Math.floor(Math.random() * 9);
+	return { name, attack };
+};
 
-        if (playerBoard.board[x][y] === "X" || playerBoard.board[x][y] === "O"){
-            console.log("this space is already taken")
-        } else {
-            playerBoard.receieveAttack(x,y)
-        }
-        
-    }
-
-    return {attack, name}   
-}
-
-export {userPlayer, computerPlayer}
+export { player, computer };

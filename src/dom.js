@@ -1,32 +1,27 @@
 import { gameboards } from "./gameboard";
-import { player } from "./player";
 
-let dom = (playerBoard) => {
-	let userBoard = document.querySelector(`#${playerBoard.boardName}-board`);
-
-	let ships = () => {
-		playerBoard.shipTypes.forEach((ship) => {
-			for (let i = 0; i < ship.len; i++) {
-				let block = document.createElement("div");
-				block.id = `${ship.name}-${i}`;
-				block.classList.add("shipBlocks");
-				document.getElementById(ship.name).appendChild(block);
-			}
-		});
-	};
+let dom = (userBoard) => {
+	let gameboard = document.querySelector(`#${userBoard.name}-board`);
 
 	let renderBoard = () => {
-		clearBoard();
+		showSunkShips();
+		if (gameboard != null) {
+			clearBoard(gameboard);
+		}
+
 		let count = 0;
-		playerBoard.board.forEach((cell) => {
+
+		userBoard.board.forEach((cell) => {
 			cell.forEach((item) => {
 				let block = document.createElement("div");
 				block.classList.add("block");
 				if (count < 10) {
 					block.dataset.id = count.toString().padStart(2, "0");
+					block.dataset.name = userBoard.name;
 					count += 1;
 				} else {
 					block.dataset.id = count.toString();
+					block.dataset.name = userBoard.name;
 					count += 1;
 				}
 
@@ -41,18 +36,36 @@ let dom = (playerBoard) => {
 					block.classList.add("miss");
 				}
 
-				userBoard.appendChild(block);
+				gameboard.appendChild(block);
 			});
 		});
 	};
 
-	let clearBoard = () => {
-		while (userBoard.firstChild) {
-			userBoard.removeChild(userBoard.firstChild);
+	let capitalize = (string) => {
+		return string.charAt(0).toUpperCase() + string.slice(1);
+	};
+
+	let showSunkShips = () => {
+		let sunkShips = userBoard.shipsOutPlay;
+		let container = document.getElementById(`${userBoard.name}-sunk-ships`);
+
+		clearBoard(container);
+
+		sunkShips.forEach((ship) => {
+			let div = document.createElement("div");
+			let name = capitalize(ship.name);
+			div.textContent = name;
+			container.appendChild(div);
+		});
+	};
+
+	let clearBoard = (section) => {
+		while (section.firstChild) {
+			section.removeChild(section.firstChild);
 		}
 	};
 
-	return { renderBoard, clearBoard, ships };
+	return { renderBoard };
 };
 
 export { dom };
