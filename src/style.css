@@ -170,3 +170,14 @@ button {
 .ship[data-name="computer"] {
 	background-color: blue;
 }
+
+#feedback {
+	display: flex;
+	justify-content: space-between;
+
+	align-items: center;
+}
+
+#feedback #error {
+	color: red;
+}
