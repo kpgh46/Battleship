@@ -56,6 +56,7 @@ body {
 	border-color: white;
 	height: fit-content;
 	justify-content: center;
+	color: lightslategray;
 	/* border-color: green; */
 }
 
@@ -64,6 +65,7 @@ body {
 	justify-content: left;
 	border-color: white;
 	width: fit-content;
+	color: lightslategray;
 }
 
 #name-tags {
@@ -100,7 +102,7 @@ div#name-tags {
 .block {
 	height: 48px;
 	width: 47px;
-	border: 1px solid red;
+	border: 1px solid black;
 	display: flex;
 }
 
