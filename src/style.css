@@ -1,13 +1,18 @@
-h1 {
-	text-align: center;
-}
-
 body {
-	width: 1000px;
+	width: 1100px;
+	display: flex;
+	flex-direction: column;
 	/* border: 1px solid purple; */
 	height: 1000px;
 	margin-left: 2%;
 	position: relative;
+	border: 1px solid black;
+	align-items: center;
+	border-radius: 10px;
+}
+
+h1 {
+	text-align: center;
 }
 
 #top {
@@ -23,8 +28,9 @@ body {
 
 #middle {
 	margin-top: 50px;
-	height: 470px;
-	width: 990px;
+	height: 670px;
+	width: 1090px;
+	/* border: 1px solid green; */
 
 	/* border: 1px solid green; */
 }
@@ -174,7 +180,7 @@ button {
 #feedback {
 	display: flex;
 	justify-content: space-between;
-
+	margin-left: 20px;
 	align-items: center;
 }
 
