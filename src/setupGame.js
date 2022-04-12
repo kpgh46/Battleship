@@ -74,18 +74,22 @@ let playRound = (playerboard, computerboard) => {
 	//not sure I need this???*******
 	let toggleTurn = () => {
 		turn = turn === 0 ? 1 : 0;
+
+		active = players[turn];
+
+		if (active === players[1]) {
+			computerSelection();
+		}
 	};
 
 	let updateGame = () => {
 		dom(boards[turn]).renderBoard();
 		toggleTurn();
-		active = players[turn];
 	};
 
 	let computerSelection = () => {
 		setTimeout(() => {
 			computerOne.attack();
-			console.log("computer attack");
 			updateGame();
 		}, 750);
 	};
@@ -100,9 +104,7 @@ let playRound = (playerboard, computerboard) => {
 
 				playerOne.attack(x, y);
 
-				console.log(turn);
 				updateGame();
-				computerSelection();
 			}
 		});
 	};
