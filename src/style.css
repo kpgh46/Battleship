@@ -208,3 +208,9 @@ button {
 .visible {
 	visibility: visible;
 }
+
+.placement-feedback {
+	color: red;
+	font-size: small;
+	font-weight: bold;
+}
