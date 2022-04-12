@@ -226,16 +226,13 @@ let gameboards = (name) => {
 	return {
 		board,
 		receieveAttack,
-		shipTypes,
 		placeShips,
 		shipsNotPlaced,
 		shipsInPlay,
 		shipsOutPlay,
 		updateCoordinates,
 		toggleDirection,
-		checkGameOver,
 		name,
-		horizontal,
 	};
 };
 
