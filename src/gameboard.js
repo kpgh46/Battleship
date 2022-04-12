@@ -226,7 +226,6 @@ let gameboards = (name) => {
 	return {
 		board,
 		receieveAttack,
-		createGameShips,
 		shipTypes,
 		placeShips,
 		shipsNotPlaced,

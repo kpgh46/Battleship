@@ -6,9 +6,9 @@ let playerSetup = () => {
 	let submitCoordsArr = [
 		"carrier",
 		"battleship",
-		// "submarine",
-		// "cruiser",
-		// "destroyer",
+		"submarine",
+		"cruiser",
+		"destroyer",
 	];
 
 	//initiate player gameboard
@@ -16,7 +16,7 @@ let playerSetup = () => {
 	dom(playerGameBoard).renderBoard();
 
 	let ifAllShipsPlaced = () => {
-		if (playerGameBoard.shipsInPlay.length === 2) {
+		if (playerGameBoard.shipsInPlay.length === submitCoordsArr.length) {
 			console.log("ready!");
 			computerSetup(playerGameBoard);
 		}
@@ -60,7 +60,6 @@ let computerSetup = (playerboard) => {
 
 let playRound = (playerboard, computerboard) => {
 	//game control
-	let game = true;
 	let turn = 0;
 	let players = [];
 	let active = players[0];
