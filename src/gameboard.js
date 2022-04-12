@@ -92,6 +92,14 @@ let gameboards = (name) => {
 		shipsOutPlay.push(shipsInPlay[index]);
 	};
 
+	let gameOver = () => {
+		let winningDiv = document.querySelector("#gameover");
+		let message = document.querySelector("#winning-message");
+		winningDiv.style.visibility = "visible";
+
+		message.innerHTML = `All of ${name}'s ships are sunk!`;
+	};
+
 	//revieve attack and evaluate if hit
 	let receieveAttack = (x, y) => {
 		let attack = board[x][y];
@@ -103,7 +111,7 @@ let gameboards = (name) => {
 			if (shipsInPlay[attack].isSunk()) {
 				removeFromPlay(attack);
 				if (checkGameOver()) {
-					console.log("Game over!!");
+					gameOver();
 				}
 			}
 		} else {
@@ -226,6 +234,7 @@ let gameboards = (name) => {
 		shipsOutPlay,
 		updateCoordinates,
 		toggleDirection,
+		checkGameOver,
 		name,
 		horizontal,
 	};

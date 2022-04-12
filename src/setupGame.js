@@ -99,6 +99,7 @@ let playRound = (playerboard, computerboard) => {
 				let y = parseInt(coord.split("")[1]);
 
 				playerOne.attack(x, y);
+
 				console.log(turn);
 				updateGame();
 				computerSelection();

@@ -187,3 +187,23 @@ button {
 #feedback #error {
 	color: red;
 }
+
+#gameover {
+	height: 100px;
+	width: 195px;
+	border: 1px solid black;
+	background-color: lightsteelblue;
+	border-radius: 10px;
+	display: flex;
+	justify-content: flex-end;
+	flex-direction: column;
+	visibility: hidden;
+}
+
+#confirmgameover {
+	margin-bottom: 10px;
+}
+
+.visible {
+	visibility: visible;
+}

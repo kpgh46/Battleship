@@ -4,7 +4,7 @@ let player = (name, enemyBoard) => {
 	let attack = (x, y) => {
 		if (enemyBoard.board[x][y] === "X" || enemyBoard.board[x][y] === "O") {
 			document.getElementById("error").textContent =
-				"space is already taken";
+				"Space is already taken";
 			setTimeout(() => {
 				document.getElementById("error").textContent = " ";
 			}, 1250);
