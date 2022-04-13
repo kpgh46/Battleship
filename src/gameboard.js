@@ -135,8 +135,8 @@ let gameboards = (name) => {
 		}
 	};
 
-	let invalidLengthFeedback = () => {
-		let invalid = document.querySelector(".placement-feedback");
+	let invalidLengthFeedback = (name) => {
+		let invalid = document.querySelector(`#${name} .placement-feedback`);
 		invalid.textContent = "Ship exceeds board. Enter new Coordinates";
 
 		setTimeout(() => {
@@ -190,13 +190,14 @@ let gameboards = (name) => {
 		//if horizontal, check if y coord is too large OR if it overlaps.  If either return false, exit the function.
 		if (horizontal) {
 			if (!validateHorizontal) {
-				invalidLengthFeedback();
+				invalidLengthFeedback(ship.name);
 				return;
 			}
 		}
 
 		if (!horizontal) {
 			if (!validateVertical) {
+				invalidLengthFeedback(ship.name);
 				return;
 			}
 		}
