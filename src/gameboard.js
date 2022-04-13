@@ -137,7 +137,16 @@ let gameboards = (name) => {
 
 	let invalidLengthFeedback = (name) => {
 		let invalid = document.querySelector(`#${name} .placement-feedback`);
-		invalid.textContent = "Ship exceeds board. Enter new Coordinates";
+		invalid.textContent = "Ship exceeds board. Enter new coordinates";
+
+		setTimeout(() => {
+			invalid.textContent = " ";
+		}, 4000);
+	};
+
+	let invalidOverlapFeedback = (name) => {
+		let invalid = document.querySelector(`#${name} .placement-feedback`);
+		invalid.textContent = "Overlaps another ship.  Enter new coordinates";
 
 		setTimeout(() => {
 			invalid.textContent = " ";
@@ -203,6 +212,7 @@ let gameboards = (name) => {
 		}
 		//validate the current ship coordinates do not extend into another ship already on the board
 		if (!validateOverlap(x, y, len)) {
+			invalidOverlapFeedback(ship.name);
 			return;
 		}
 		//if above is validated, place ship on board and hide the coordinate html box
